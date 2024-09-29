@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'CamptonSemiBold';
+    src: url('./fonts/CamptonSemiBold.otf') format('truetype');
+}
+@font-face {
+    font-family: 'CamptonBook';
+    src: url('./fonts/CamptonBook.otf') format('truetype');
+}
+@font-face {
+    font-family: 'CamptonLight';
+    src: url('./fonts/CamptonLight.otf') format('truetype');
+}
+
+:root{
+    --font-family-default: 'CamptonSemiBold', sans-serif;
+    --font-size-default: 16px;
+    --color-default: #242424;
+    --color-orange: #f63c2f;
+    --color-gray: #9b9b9b;
+    --color-white: #ffffff;
+    /* --color-active: #9b0b0b;
+    --color-theme-main: #056943; */
+}
+
+body{
+    --font-family-default: 'CamptonSemiBold', sans-serif;
+    --font-size-default: 16px;
+    --max-width: 1700px;
+    /* min-width: 360px; */
+    --color-default: #242424;
+    --color-orange: #f63c2f;
+    --color-gray: #9b9b9b;
+    --color-white: #ffffff;
+    /* --color-active: #9b0b0b;
+    --color-theme-main: #056943; */
+}

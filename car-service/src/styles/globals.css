@@ -1,0 +1,51 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+html{
+    scroll-behavior: smooth;
+    min-width: 300px;
+}
+body{
+    font-family: var(--font-family-default);
+    font-size: var(--font-size-default);
+    color: var(--color-orange);
+    background-color: var(--color-default);
+}
+/* li{
+    list-style: none;
+}
+h1, h2{
+    font-weight: 700;
+}
+h1{
+    font-size: 3rem;
+}
+h2{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.5rem;
+}
+p{
+    font-size: 1.4rem;
+} 
+a{
+    text-decoration: none;
+    color: var(--color-text-default);
+    cursor: pointer;
+}*/
+button{
+    cursor: pointer;
+}
+
