@@ -1,0 +1,117 @@
+.Hero {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.HeroInner {
+    text-align: center;
+    margin-top: 5vh;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #fff;
+}
+
+.SliderComponent {
+    position: relative;
+}
+
+.Slide {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0px;
+    min-height: 80vh;
+}
+
+.CarImage {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 100px 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.CarDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    color: #fff;
+    text-align: left;
+    font-size: var(--font-size-small);
+    padding: 10px 20px;
+    width: 100%;
+
+}
+
+.CarDetails h2 {
+    font-size: var(--font-size-normal);
+    margin-bottom: 10px;
+}
+
+.Price {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.OldPrice {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 10px;
+}
+
+.NewPrice {
+    color: var(--color-orange);
+}
+
+.Buttons {
+    display: flex;
+    gap: 15px;
+}
+.DetailsButton{
+    background-color: transparent;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.OrderButton {
+    background-color: transparent;
+    font-size: calc(var(--font-size-small) - 5px);
+    color: #fff;
+    border: 2px solid var(--color-white);
+    margin-left: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+.OrderButton:hover {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+
+:global(.swiper-pagination-bullet) {
+    background: #fff;
+}
+
+:global(.swiper-pagination-bullet-active) {
+    background: var(--color-orange);
+}
+
+:global(.swiper-button-next), :global(.swiper-button-prev) {
+    color: var(--color-orange);
+}

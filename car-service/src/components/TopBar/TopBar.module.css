@@ -1,0 +1,50 @@
+.TopBarContainer{
+    width: 100%;
+    padding: 1rem 4rem;
+    height: 60px;
+}
+.TopBar{
+    justify-content: space-between;
+    width: 100%;    
+    display: flex;
+    flex-direction: row;
+}
+.Logo{
+    font-family: var(--font-family-CamptonBook);
+}
+.NavButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.NavButton{
+    position: relative;
+    max-width: 200px;
+    font-family: var(--font-family-CamptonLight);
+    font-size: var(--font-size-small);
+    padding: 0 1rem;
+    margin: 0 1rem;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.NavButton:hover{
+    color: var(--color-orange);
+}
+.NavButton::after{
+    content: "";
+    position: absolute;
+    display: block;
+    top: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-orange);
+    transition: all 0.3s;
+}
+.NavButton:hover::after{
+    width: calc(90% - 5px);
+}
+
+.Tel{
+    font-family: var(--font-family-CamptonBook);
+}

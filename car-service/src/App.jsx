@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import './styles/globals.css'
 import './styles/theme.css';
+import HomePage from './views/HomePage';
 function App() {
 
   return (
     <>
-      <p>dwfffffff  346 213 aa</p>
+      <HomePage/>
     </>
   )
 }

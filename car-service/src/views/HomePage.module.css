@@ -1,0 +1,9 @@
+.mainContent{
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(./ra2.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    
+}

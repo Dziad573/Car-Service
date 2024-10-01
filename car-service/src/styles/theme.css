@@ -12,9 +12,13 @@
 }
 
 :root{
-    --font-family-default: 'CamptonSemiBold', sans-serif;
-    --font-size-default: 16px;
-    --color-default: #242424;
+    --font-family-CamptonSemiBold: 'CamptonSemiBold', sans-serif;
+    --font-family-CamptonBook: 'CamptonBook', sans-serif;
+    --font-family-CamptonLight: 'CamptonLight', sans-serif;
+    --font-size-large: 2rem;
+    --font-size-normal: 1.6rem;
+    --font-size-small: 1.3rem;
+    --color-black: #242424;
     --color-orange: #f63c2f;
     --color-gray: #9b9b9b;
     --color-white: #ffffff;
@@ -23,14 +27,14 @@
 }
 
 body{
-    --font-family-default: 'CamptonSemiBold', sans-serif;
+    /*--font-family-default: 'CamptonSemiBold', sans-serif;
     --font-size-default: 16px;
     --max-width: 1700px;
-    /* min-width: 360px; */
+        min-width: 360px; 
     --color-default: #242424;
     --color-orange: #f63c2f;
     --color-gray: #9b9b9b;
-    --color-white: #ffffff;
+    --color-white: #ffffff;*/
     /* --color-active: #9b0b0b;
     --color-theme-main: #056943; */
 }
