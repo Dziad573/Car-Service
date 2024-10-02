@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import styles from './HomePage.module.css'
 import TopBar from '../components/TopBar/TopBar'
 import Hero from '../components/Hero/Hero'
-import styles from './HomePage.module.css'
+import AboutCompany from '../components/AboutCompany/AboutCompany'
 
 function HomePage() {
 
@@ -11,6 +12,7 @@ function HomePage() {
             <TopBar/>
             <Hero/>
         </div>
+            <AboutCompany/>
         </>
     )
 }
