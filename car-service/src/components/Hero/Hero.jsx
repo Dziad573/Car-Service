@@ -4,7 +4,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';  // Zmiana importu modułów
 import styles from './Hero.module.css';
-import car from './64-648005_dodge-challenger-png-image-transparent-dodge-challenger.png';
+import car1 from './Challenger.png';
+import car2 from './Charger.png';
+import car3 from './Ram.png';
 
 const cars = [
     {
@@ -12,21 +14,21 @@ const cars = [
         priceOld: '$1300',
         priceNew: '$800',
         time: '1 day',
-        img: car,
+        img: car1,
     },
     {
         name: 'Lamborghini Aventador J',
         priceOld: '$1300',
         priceNew: '$800',
         time: '1 day',
-        img: car,
+        img: car2,
     },
     {
         name: 'Lamborghini Aventador J',
         priceOld: '$1300',
         priceNew: '$800',
         time: '1 day',
-        img: car,
+        img: car3,
     },
   // Dodaj kolejne samochody
 ];
@@ -61,7 +63,16 @@ function Hero() {
                         <div>
                             <h2>{car.name}</h2>
                             <div className={styles.Buttons}>
-                                <div className={styles.DetailsButton}>View Details</div>
+                                <div className={styles.DetailsButton}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" 
+                                        width="28" 
+                                        height="28" 
+                                        viewBox="0 0 24 24">
+                                        <g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0"/>
+                                        <path d="M21 12q-3.6 6-9 6t-9-6q3.6-6 9-6t9 6"/></g>
+                                    </svg>
+                                    <div>View Details</div>
+                                </div>
                             </div>
                         </div>
 

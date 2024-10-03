@@ -1,0 +1,28 @@
+.sliderContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+.slider {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+}
+
+.slider::-webkit-scrollbar {
+    background-color: #f63c2f52;
+    border-radius: 10px;
+    height: 10px;
+}
+
+.slider::-webkit-scrollbar-thumb {
+    background-color: var(--color-orange);
+    border-radius: 10px;
+}
+
+.slider:hover {
+    cursor: pointer;
+}

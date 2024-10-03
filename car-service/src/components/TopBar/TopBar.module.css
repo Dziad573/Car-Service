@@ -10,6 +10,8 @@
     flex-direction: row;
 }
 .Logo{
+    width: 180px;
+    /* padding: 0 50px; */
     font-family: var(--font-family-CamptonBook);
 }
 .NavButtons{
@@ -47,4 +49,6 @@
 
 .Tel{
     font-family: var(--font-family-CamptonBook);
+    font-size: var(--font-size-small);
+    max-width: 180px;
 }

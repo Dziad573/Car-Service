@@ -82,16 +82,32 @@ h1 {
     gap: 15px;
 }
 .DetailsButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     background-color: transparent;
     padding: 10px 10px;
     margin-bottom: 20px;
     cursor: pointer;
     transition: all 0.3s;
 }
+.DetailsButton svg{
+    margin-right: .4rem;
+    
+}
+.DetailsButton:hover {
+    color: var(--color-orange);
+}
+g{
+    transition: all 0.3s;
+}
+.DetailsButton:hover g{
+    stroke: var(--color-orange);
+}
 .OrderButton {
     background-color: transparent;
     font-size: calc(var(--font-size-small) - 5px);
-    color: #fff;
+    color: var(--color-white);
     border: 2px solid var(--color-white);
     margin-left: 10px;
     padding: 10px 20px;

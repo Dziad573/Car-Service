@@ -53,6 +53,10 @@ img{
     align-items: center;
     padding: 1rem 0;
 }
+.customers>div:nth-child(2), .carCount>div:nth-child(2){
+    color: var(--color-orange);
+}
+
 svg{
     color: var(--color-orange);
 }
