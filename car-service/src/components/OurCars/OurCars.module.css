@@ -1,0 +1,15 @@
+.OurCars{
+    width: 100%;
+    /* background-color: var(--color-light-gray); */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 50px;
+}
+.header h1{
+    padding: 2rem;
+    color: var(--color-black);
+    font-family: var(--font-family-CamptonSemiBold);
+    font-size: var(--font-size-large);
+}

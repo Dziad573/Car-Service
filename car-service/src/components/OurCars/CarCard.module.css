@@ -1,0 +1,109 @@
+.carCard {
+    position: relative;
+    display: flex;
+    max-height: 290px;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    max-width: 300px;
+    margin: 10px;
+    overflow: hidden;
+}
+
+.carCard:hover {
+    transform: scale(1.05); /* Efekt powiększenia po najechaniu */
+}
+
+.carCard img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.carCard .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carCard:hover .overlay {
+    opacity: 1;
+}
+
+.availableNow {
+    color: #ff6347;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.makeOrder {
+    background-color: #ff6347;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: var(--font-size-small);
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.makeOrder:hover {
+    background-color: #ff3b30;
+}
+
+.carCard h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.priceContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+
+}
+
+.price {
+    font-size: 1rem;
+    color: #666;
+}
+
+.price span {
+    font-size: 0.9rem;
+}
+
+.moreDetails {
+    font-size: calc(var(--font-size-small) - .1rem);
+    color: #ff3b30;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    z-index: 2;
+}
+
+.moreDetails:hover {
+    color: #ff6347;
+}
+
+.unavailable {
+    opacity: 0.5;
+}
