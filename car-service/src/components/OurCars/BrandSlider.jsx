@@ -12,8 +12,9 @@ import mazdaLogo from "../../assets/mazda.png";
 import audiLogo from "../../assets/audi.png";
 import fordLogo from "../../assets/ford.png";
 
-function BrandSlider() {
+function BrandSlider({ onBrandSelect }) {
     const brands = [
+        { brand: "All", imgSrc: "" },  // Dodajemy opcję All na początku
         { brand: "Ferrari", imgSrc: ferrariLogo },
         { brand: "Lamborghini", imgSrc: lamborghiniLogo },
         { brand: "Dodge", imgSrc: dodgeLogo },
@@ -30,7 +31,12 @@ function BrandSlider() {
         <div className={styles.sliderContainer}>
             <div className={styles.slider}>
                 {brands.map((item, index) => (
-                    <BrandName key={index} brand={item.brand} imgSrc={item.imgSrc} />
+                    <BrandName 
+                        key={index} 
+                        brand={item.brand} 
+                        imgSrc={item.imgSrc} 
+                        onClick={() => onBrandSelect(item.brand)} // Przekazujemy funkcję onClick
+                    />
                 ))}
             </div>
         </div> 

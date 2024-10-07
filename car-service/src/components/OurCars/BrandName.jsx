@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "./BrandName.module.css";
 
-function BrandName({ brand, imgSrc }) {
+function BrandName({ brand, imgSrc, onClick }) {
     return (
-        <div className={styles.brand}>
-            <img src={imgSrc} alt={brand} />
-            {/* <h1>{brand}</h1> */}
+        <div className={styles.brand} onClick={onClick}>
+            {imgSrc ? (
+                <img src={imgSrc} alt={brand} />
+            ) : (
+                <p>{brand}</p>
+            )}
         </div>
     );
 }
