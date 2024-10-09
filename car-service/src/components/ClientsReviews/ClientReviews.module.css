@@ -1,0 +1,24 @@
+.curvedContainer {
+    color: var(--color-white);
+    width: 100%;
+    min-height: 50vh;
+    position: relative;
+    background-color: #f53b3b;
+    padding: 50px;
+    clip-path: ellipse(150% 100% at 50% 100%);
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px){
+    .container{
+        flex-wrap: wrap;
+    }
+    
+}

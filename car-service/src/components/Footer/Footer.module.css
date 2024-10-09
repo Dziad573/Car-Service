@@ -1,0 +1,79 @@
+.footer{
+    font-family: var(--font-family-CamptonLight);
+    font-size: var(--font-size-small);
+    background-color: var(--color-black);
+    color: white;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+.container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+.footer>h3{
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+}
+.faq>ul>li{
+    text-align: left;
+    list-style: outside;
+    list-style-type:decimal;
+    padding: 1rem 0;
+}
+.socials{
+    width: auto;
+    position: absolute;
+    top: -2rem;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+.socials>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    padding: .3rem;
+    margin: 0 .5rem;
+    transition: all .5s;
+}
+.socials>a:hover{
+    background-color: var(--color-orange);
+    transition: all .5s;
+}
+.socials>a path{
+    fill: var(--color-orange);
+    transition: all .5s;
+}
+.socials>a:hover path{
+    fill: var(--color-white);
+    transition: all .5s;
+}
+.email{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding-top: 1rem;
+}
+.email>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+}
