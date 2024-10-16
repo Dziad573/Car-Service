@@ -7,3 +7,9 @@
     background-position: center;
     
 }
+.secondContent{
+    display: flex;
+    flex-flow: wrap;
+    width: 100%;
+    background-color: var(--color-light-gray);
+}
