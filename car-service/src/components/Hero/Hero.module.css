@@ -12,8 +12,12 @@
 }
 
 .HeroInner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     text-align: center;
-    margin-top: 5vh;
+    margin-top: 3.5vh;
 }
 
 h1 {
@@ -79,30 +83,31 @@ h1 {
 
 .Buttons {
     display: flex;
-    gap: 15px;
 }
 .DetailsButton{
     display: flex;
     flex-direction: row;
     align-items: center;
     background-color: transparent;
-    padding: 10px 10px;
-    margin-bottom: 20px;
+    padding: 5px 10px;
     cursor: pointer;
     transition: all 0.3s;
+}
+.details{
+    color: var(--color-white);
 }
 .DetailsButton svg{
     margin-right: .4rem;
     
 }
-.DetailsButton:hover {
+.DetailsButton:hover .details{
     color: var(--color-orange);
-}
-g{
-    transition: all 0.3s;
 }
 .DetailsButton:hover g{
     stroke: var(--color-orange);
+}
+g, .details{
+    transition: all 0.3s;
 }
 .OrderButton {
     background-color: transparent;
@@ -119,9 +124,33 @@ g{
     background-color: var(--color-white);
     color: var(--color-black);
 }
+.countdownContainer>span{
+    font-weight:bold;
+    color: var(--color-orange);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    margin-left: 20px;
+    
+}
+.countdown span {
+    font-weight:bold;
+    color: var(--color-orange);
+}
 
 :global(.swiper-pagination-bullet) {
     background: #fff;
+    transition: all 0.3s;
 }
 
 :global(.swiper-pagination-bullet-active) {
