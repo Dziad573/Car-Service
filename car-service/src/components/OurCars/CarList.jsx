@@ -10,7 +10,14 @@ function CarList({ cars }) {
                     name={car.name} 
                     price={car.price} 
                     image={car.image} 
-                    available={car.available} 
+                    available={car.available}
+                    horsePower={car.horsePower}
+                    transmission={car.transmission}
+                    acceleration={car.acceleration}
+                    tank={car.tank}
+                    description={car.description}
+                    reservedDates={car.reservedDates}
+                    carData={car}
                 />
             ))}
         </div>

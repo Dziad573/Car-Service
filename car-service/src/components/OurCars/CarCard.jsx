@@ -1,13 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './CarCard.module.css';
 
-function CarCard({ name, price, image, available }) {
+function CarCard({ name, price, image, available, carData }) {
+    const navigate = useNavigate();
+
+    const handleMoreDetails = () => {
+
+        navigate(`/car/${name.replace(/\s+/g, '-').toLowerCase()}`, { state: { car: carData } });
+    };
+
     return (
         <div className={`${styles.carCard} ${available ? styles.available : styles.unavailable}`}>
             <img src={image} alt={name} className={styles.carImage} />
             <h3>{name}</h3>
             <div className={styles.priceContainer}>
                 <p className={styles.price}>{price} <span>/ 1 day</span></p>
-                <a href="#" className={styles.moreDetails}>{'More Details >'}</a>
+                <span onClick={handleMoreDetails} className={styles.moreDetails}>More Details &gt;</span>
             </div>
             {available && (
                 <div className={styles.overlay}>
@@ -20,3 +28,5 @@ function CarCard({ name, price, image, available }) {
 }
 
 export default CarCard;
+
+

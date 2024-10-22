@@ -5,6 +5,7 @@ import HomePage from './views/HomePage';
 import CarsPage from './views/CarsPage';
 import AboutPage from './views/AboutPage';
 import ContactPage from './views/ContactPage';
+import CarDetailsPage from './views/CarDetailsPage';
 import TopBar from './components/TopBar/TopBar';
 
 function AppContent() {
@@ -19,6 +20,7 @@ function AppContent() {
           <Route path="/cars" element={<CarsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/car/:name" element={<CarDetailsPage />} />
       </Routes>
     </>
   );

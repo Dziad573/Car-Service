@@ -1,0 +1,136 @@
+.carDetailsPage{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+.infoContainer{
+    width: 100%;
+    max-width: 1650px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+img{
+    max-width: 80%;
+    height: auto;
+}
+.pics{
+    width: 100%;
+    margin: 1rem;
+    min-width: 200px;
+    max-width: 700px;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    /* background-color: aqua; */
+}
+.info{
+    width: 100%;
+    min-width: 200px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    /* background-color: rgb(19, 61, 61); */
+}
+.info>p, .calendar>p{
+    width: 100%;
+    text-align: left;
+    padding: .5rem;
+}
+.pics>div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.details>span{
+    padding: .5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.carDescription{
+    width: 100%;
+    font-display: flex;
+    font-size: calc(var(--font-size-small) - 0.2rem);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+:global(.react-calendar) {
+    height: auto !important;
+    width: auto !important;
+    /* border: 1px solid #eeeeee !important; */
+    border-radius: 2rem !important;    
+    box-shadow: 0px 0px 10px rgb(236, 57, 44) !important;
+}
+:global(.react-calendar__tile) {
+    font-size: var(--font-size-small) !important;
+    font-family: var(--font-family-CamptonBook) !important;
+    padding: 8px 10px !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color: #333 !important;
+    border-radius: 2rem !important;
+    transition: all 0.3s !important;
+}
+
+:global(.react-calendar__tile:hover) {
+    background-color: #eeeeee !important;
+    cursor: pointer !important;
+}
+
+:global(.react-calendar__tile--active) {
+    background-color: #007bff !important;
+    color: #ffffff !important;
+}
+
+:global(.react-calendar__navigation) {
+    padding: 1.5rem !important;
+    border-top-left-radius: 2rem !important;
+    border-top-right-radius: 2rem !important;
+    width: 100% !important;
+    height: auto !important;
+    font-size: var(--font-size-small) !important;
+    font-family: var(--font-family-CamptonBook) !important;
+    background-color: var(--color-orange);
+    color: var(--color-white) !important;
+}
+:global(.react-calendar__navigation>button) {
+    border-radius: 2rem !important;
+    font-size: var(--font-size-small) !important;
+    font-family: var(--font-family-CamptonBook) !important;
+    background-color: var(--color-orange);
+    color: var(--color-white) !important;
+}
+:global(.react-calendar__navigation>button:hover){
+    background-color: #e67373 !important;
+    color: #ffffff !important;
+}
+:global(.react-calendar__month-view__weekdays__weekday){
+    font-size: cacl(var(--font-size-small) - .5rem) !important;
+    font-family: var(--font-family-CamptonBook) !important;
+    color: var(--color-black) !important;
+}
+.reserved-date {
+    background-color: var(--color-orange) !important;
+    color: #ffffff !important;
+}
+.reserved-date:hover {
+    cursor: not-allowed !important;
+}

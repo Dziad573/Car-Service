@@ -5,14 +5,12 @@ import CarList from './CarList';
 import { carList } from '../../constants/carList';
 
 function OurCars() {
-    const [selectedBrand, setSelectedBrand] = useState('All'); // Domyślnie wybrana marka to All
+    const [selectedBrand, setSelectedBrand] = useState('All');
 
-    // Funkcja, która ustawia wybraną markę
     const handleBrandSelect = (brand) => {
         setSelectedBrand(brand);
     };
 
-    // Filtrowanie samochodów na podstawie wybranej marki
     const filteredCars = selectedBrand === 'All' ? carList : carList.filter(car => car.brand === selectedBrand);
 
     return (

@@ -93,6 +93,7 @@
 }
 
 .moreDetails {
+    cursor: pointer;
     font-size: calc(var(--font-size-small) - .1rem);
     color: #ff3b30;
     text-decoration: none;
