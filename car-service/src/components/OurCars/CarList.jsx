@@ -17,6 +17,7 @@ function CarList({ cars }) {
                     tank={car.tank}
                     description={car.description}
                     reservedDates={car.reservedDates}
+                    type={car.type}
                     carData={car}
                 />
             ))}

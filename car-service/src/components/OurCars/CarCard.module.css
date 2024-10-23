@@ -23,8 +23,8 @@
 .carCard img {
     max-width: 100%;
     height: auto;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
+    /* border-bottom: 1px solid #ddd;
+    margin-bottom: 10px; */
     transition: opacity 0.3s ease;
 }
 

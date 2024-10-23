@@ -5,29 +5,28 @@ import 'react-calendar/dist/Calendar.css';
 import ClientReviews from '../components/ClientsReviews/ClientReviews';
 import Footer from '../components/Footer/Footer';
 import styles from './CarDetailsPage.module.css';
+import CarCard from '../components/OurCars/CarCard';
 
-function CarDetailsPage() {
+function CarDetailsPage({ carList }) {
     const location = useLocation();
     const { car } = location.state;
 
     const [value, setValue] = useState(new Date());
 
-    // Function to check if the date is reserved
     const isDateReserved = (date) => {
         return car.reservedDates.some(reservedDate => new Date(reservedDate).toDateString() === date.toDateString());
     };
 
-    // Function to apply custom styling to reserved dates
+    
     const tileClassName = ({ date, view }) => {
         if (view === 'month') {
-            // Check if the date is in the reservedDates array
             if (isDateReserved(date)) {
-                return styles['reserved-date'];  // Apply the custom CSS module class
+                return styles['reserved-date'];
             }
         }
         return null;
     };
-
+    const relatedCars = carList.filter(c => c.type === car.type && c.id !== car.id).slice(0, 4);
     return (
         <>
             <div className={styles.carDetailsPage}>
@@ -81,7 +80,27 @@ function CarDetailsPage() {
                     
                     
                 </div>
-                RELATED CARS
+
+                <div className={styles.relatedCars}>
+                    <h2>Related Cars</h2>
+                    <div className={styles.relatedCarsContainer}>
+                        {relatedCars.length > 0 ? (
+                            relatedCars.map(relatedCar => (
+                                <CarCard
+                                    key={relatedCar.id}
+                                    name={relatedCar.name}
+                                    price={relatedCar.price}
+                                    image={relatedCar.image}
+                                    available={relatedCar.available}
+                                    carData={relatedCar}
+                                />
+                            ))
+                        ) : (
+                            <p>No related cars available.</p>
+                        )}
+                    </div>
+                </div>
+
                 <ClientReviews />
                 <Footer />
             </div>
