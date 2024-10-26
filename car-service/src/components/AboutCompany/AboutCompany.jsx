@@ -5,7 +5,7 @@ import About from '../../constants/About.js'
 function AboutCompany() {
     return (
         <div className={styles.aboutCompany}> 
-            <div className={styles.image}>
+            <div className={styles.aboutImage}>
                 <img src={img} alt="" />
             </div>
             <div className={styles.content}>

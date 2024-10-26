@@ -6,7 +6,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
 }
 .carDetailsPage>h1{
     padding: 2rem;
@@ -27,6 +26,7 @@
 img{
     max-width: 80%;
     height: auto;
+    border-radius: 0px;
 }
 .pics{
     width: 100%;
@@ -147,7 +147,7 @@ img{
 
 
 .relatedCars {
-    margin: 4rem 0;
+    margin: 7rem 1rem;
 }
 
 .relatedCarsContainer {

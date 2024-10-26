@@ -17,7 +17,7 @@ const cars = [
         priceNew: '$800',
         time: '1 day',
         img: car1,
-        expireDate: new Date('2024-10-07T19:31:40'),
+        expireDate: new Date('2024-10-27T19:31:40'),
     },
     {
         name: 'Lamborghini Aventador J',
@@ -25,7 +25,7 @@ const cars = [
         priceNew: '$800',
         time: '1 day',
         img: car2,
-        expireDate: new Date('2024-10-12T23:59:59'),
+        expireDate: new Date('2024-10-30T23:59:59'),
     },
     {
         name: 'Lamborghini Aventador J',
@@ -33,7 +33,7 @@ const cars = [
         priceNew: '$800',
         time: '1 day',
         img: car3,
-        expireDate: new Date('2024-10-15T23:59:59'),
+        expireDate: new Date('2024-10-25T23:59:59'),
     },
 ];
 
@@ -65,7 +65,7 @@ function Countdown({ expireDate }) {
     }, []);
 
     return (
-        <div className={styles.countdownContainer}> {/* Klasa kontenerowa */}
+        <div className={styles.countdownContainer}>
             {timeLeft.days !== undefined ? (
                 <div className={styles.countdown}>
                     <span>{String(timeLeft.days).padStart(2, '0')}:</span>

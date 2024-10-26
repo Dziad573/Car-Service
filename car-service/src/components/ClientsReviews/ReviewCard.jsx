@@ -15,7 +15,7 @@ const review = [
     return (
         <div className={styles.review}>
         <div className={styles.image}>
-            <img src={img} alt="" />
+            <img className={styles.reviewImage} src={img} alt="" />
         </div>
         <h3>{review[0].author}</h3>
         <p>{review[0].text}</p>
