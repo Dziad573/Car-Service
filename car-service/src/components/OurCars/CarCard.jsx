@@ -11,7 +11,9 @@ function CarCard({ name, price, image, available, carData }) {
 
     return (
         <div className={`${styles.carCard} ${available ? styles.available : styles.unavailable}`}>
-            <div className={styles.image}><img src={image} alt={name} className={styles.carImage} /></div>
+            <div className={styles.image}>
+                <img src={image} alt={name} className={styles.carImage} />
+            </div>
             <h3>{name}</h3>
             <div className={styles.priceContainer}>
                 <p className={styles.price}>{price} <span>/ 1 day</span></p>
