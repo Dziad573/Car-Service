@@ -6,9 +6,10 @@ function CarList({ cars }) {
         <div className={styles.carList}>
             {
                 
-                cars.slice(0, 9).map((car, index) => (
+                cars.slice(0, 12).map((car, index) => (
                     <CarCard 
                         key={index} 
+                        brand={car.brand}
                         name={car.name} 
                         price={car.price} 
                         image={car.image} 

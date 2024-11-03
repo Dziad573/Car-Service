@@ -1,8 +1,9 @@
 .sliderContainer {
     width: 100%;
     max-width: 1200px;
+    padding: 1rem;
     margin: 0 auto;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 .slider {
@@ -23,6 +24,9 @@
     border-radius: 10px;
 }
 
-.slider:hover {
-    cursor: pointer;
+.slider img {
+    width: 60px;
+    height: auto;
+    flex-shrink: 0;
+    margin: 0 10px;
 }

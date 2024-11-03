@@ -1,11 +1,12 @@
 import styles from "./TopBar.module.css";
 import { NavLink } from 'react-router-dom';
+import logo from './logo2.png';
 
 function TopBar() {
     return (
         <div className={styles.TopBarContainer}>
             <div className={styles.TopBar}>
-                <div className={styles.Logo}>LOGO</div>
+                <div className={styles.Logo}><img src={logo} alt={logo} className={styles.logo} /></div>
                 <div className={styles.NavButtons}>
                     <NavLink 
                         to="/" 

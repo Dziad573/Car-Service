@@ -8,12 +8,15 @@ import ContactPage from './views/ContactPage';
 import CarDetailsPage from './views/CarDetailsPage';
 import TopBar from './components/TopBar/TopBar';
 import { carList } from './constants/carList';
+import BrandSlider from './components/OurCars/BrandSlider';
+import OurCars from './components/OurCars/OurCars';
 function AppContent() {
   const location = useLocation();
 
   return (
     <>
       {location.pathname !== '/' && <TopBar />}
+      
       
       <Routes>
           <Route path="/" element={<HomePage />} />

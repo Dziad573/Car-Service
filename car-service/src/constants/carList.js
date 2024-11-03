@@ -16,7 +16,7 @@ export const carList = [
     {
         id: 1,
         name: 'Dodge Challenger',
-        price: '$800',
+        price: '$200',
         brand: 'Dodge',
         image: Challenger,
         horsePower: '500',
@@ -46,7 +46,7 @@ export const carList = [
     {
         id: 3,
         name: 'Lamborghini Aventador',
-        price: '$800',
+        price: '$630',
         brand: 'Lamborghini',
         image: LamborghiniAventador,
         horsePower: '500',
@@ -61,7 +61,7 @@ export const carList = [
     {
         id: 4,
         name: 'BMW M3 Competition',
-        price: '$800',
+        price: '$180',
         brand: 'BMW',
         image: BmwM3,
         horsePower: '500',
@@ -76,7 +76,7 @@ export const carList = [
     {
         id: 5,
         name: 'BMW M8 Coupe',
-        price: '$800',
+        price: '$460',
         brand: 'BMW',
         image: BmwM8Coupe,
         horsePower: '500',
@@ -91,7 +91,7 @@ export const carList = [
     {
         id: 6,
         name: 'Audi R8',
-        price: '$800',
+        price: '$310',
         brand: 'Audi',
         image: AudiR8,
         horsePower: '500',
@@ -106,7 +106,7 @@ export const carList = [
     {
         id: 7,
         name: 'Ford Ranger',
-        price: '$800',
+        price: '$90',
         brand: 'Ford',
         image: FordRanger,
         horsePower: '500',
@@ -121,7 +121,7 @@ export const carList = [
     {
         id: 8,
         name: 'Toyota GT86',
-        price: '$800',
+        price: '$120',
         brand: 'Toyota',
         image: ToyotaGT86,
         horsePower: '500',
@@ -136,7 +136,7 @@ export const carList = [
     {
         id: 9,
         name: 'Mazda RX7',
-        price: '$800',
+        price: '$110',
         brand: 'Mazda',
         image: MazdaRX7,
         horsePower: '500',
@@ -151,7 +151,7 @@ export const carList = [
     {
         id: 10,
         name: 'Toyota Corolla Cross',
-        price: '$800',
+        price: '$70',
         brand: 'Toyota',
         image: CorollaCross,
         horsePower: '500',
@@ -166,7 +166,7 @@ export const carList = [
     {
         id: 11,
         name: 'Toyota C-HR',
-        price: '$800',
+        price: '$85',
         brand: 'Toyota',
         image: Toyota_CHR,
         horsePower: '500',
@@ -181,7 +181,7 @@ export const carList = [
     {
         id: 12,
         name: 'Toyota Highlander',
-        price: '$800',
+        price: '$70',
         brand: 'Toyota',
         image: ToyotaHighlander,
         horsePower: '500',
@@ -196,7 +196,7 @@ export const carList = [
     {
         id: 13,
         name: 'Toyota Camry',
-        price: '$800',
+        price: '$50',
         brand: 'Toyota',
         image: ToyotaCamry,
         horsePower: '500',

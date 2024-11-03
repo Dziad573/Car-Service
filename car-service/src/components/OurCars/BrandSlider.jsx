@@ -14,7 +14,7 @@ import fordLogo from "../../assets/ford.png";
 
 function BrandSlider({ onBrandSelect }) {
     const brands = [
-        { brand: "All", imgSrc: "" },  // Dodajemy opcję All na początku
+        { brand: "", imgSrc: "" },
         { brand: "Ferrari", imgSrc: ferrariLogo },
         { brand: "Lamborghini", imgSrc: lamborghiniLogo },
         { brand: "Dodge", imgSrc: dodgeLogo },
@@ -35,7 +35,7 @@ function BrandSlider({ onBrandSelect }) {
                         key={index} 
                         brand={item.brand} 
                         imgSrc={item.imgSrc} 
-                        onClick={() => onBrandSelect(item.brand)} // Przekazujemy funkcję onClick
+                        onClick={() => onBrandSelect(item.brand)}
                     />
                 ))}
             </div>

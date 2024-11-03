@@ -2,23 +2,55 @@ import { useState } from 'react';
 import styles from './OurCars.module.css';
 import BrandSlider from './BrandSlider';
 import CarList from './CarList';
+import Filter from './Filter';
 import { carList } from '../../constants/carList';
+import { useLocation } from 'react-router-dom';
 
 function OurCars() {
-    const [selectedBrand, setSelectedBrand] = useState('All');
+    const [selectedFilters, setSelectedFilters] = useState({
+        brand: '',
+        priceRange: [0, 1000],
+        horsePower: [100, 1000],
+        transmission: '',
+        onlyAvailable: false,
+        carType: '',
+    });
 
-    const handleBrandSelect = (brand) => {
-        setSelectedBrand(brand);
+    const location = useLocation();
+
+    const handleFilterChange = (filters) => {
+        setSelectedFilters(prevFilters => ({ ...prevFilters, ...filters }));
     };
 
-    const filteredCars = selectedBrand === 'All' ? carList : carList.filter(car => car.brand === selectedBrand);
+    const filteredCars = carList.filter(car => {
+        const matchesBrand = selectedFilters.brand === '' || car.brand === selectedFilters.brand;
+        const matchesPrice = parseInt(car.price.replace('$', '')) >= selectedFilters.priceRange[0] &&
+                             parseInt(car.price.replace('$', '')) <= selectedFilters.priceRange[1];
+        const matchesHorsePower = parseInt(car.horsePower) >= selectedFilters.horsePower[0] &&
+                                  parseInt(car.horsePower) <= selectedFilters.horsePower[1];
+        const matchesTransmission = selectedFilters.transmission === '' || car.transmission === selectedFilters.transmission;
+        const matchesAvailability = !selectedFilters.onlyAvailable || car.available === true;
+        const matchesType = selectedFilters.carType === '' || car.type === selectedFilters.carType;
+
+        return matchesBrand && matchesPrice && matchesHorsePower && matchesTransmission && matchesAvailability && matchesType;
+    });
 
     return (
         <div className={styles.OurCars}>
             <div className={styles.header}>
                 <h1>Our Cars</h1>
             </div>
-            <BrandSlider onBrandSelect={handleBrandSelect} />
+
+            {/* Render BrandSlider only on / */}
+            {location.pathname === '/' && (
+                <BrandSlider onBrandSelect={(brand) => handleFilterChange({ brand })} />
+            )}
+
+            {/* Render Filter Component only on /cars */}
+            {location.pathname === '/cars' && (
+                <Filter onFilterChange={handleFilterChange} />
+            )}
+
             <CarList cars={filteredCars} />
         </div>
     );
