@@ -99,6 +99,7 @@ function CarDetailsPage({ carList }) {
                             <p>No related cars available.</p>
                         )}
                     </div>
+
                 </div>
 
                 <ClientReviews />

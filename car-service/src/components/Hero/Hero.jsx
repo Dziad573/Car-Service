@@ -105,7 +105,7 @@ function Hero() {
 
     return (
         <div className={styles.Hero}>
-            {videoVisible ? (
+            {videoVisible && isMobile ? (
                 <div className={styles.VideoContainer}>
                     <video
                         className={styles.Video}

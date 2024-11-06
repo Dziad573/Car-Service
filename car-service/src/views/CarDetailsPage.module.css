@@ -144,14 +144,15 @@ img{
 .reserved-date:hover {
     cursor: not-allowed !important;
 }
-
-
-.relatedCars {
-    margin: 7rem 1rem;
+.relatedCarsContainer {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
-.relatedCarsContainer {
-    display: flex;
-    justify-content: space-between;
+.relatedCarsContainer > * {
+    flex: 0 2 100%;
+    margin: 1rem .3rem;
 }
 
