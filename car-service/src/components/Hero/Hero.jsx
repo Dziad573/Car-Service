@@ -18,7 +18,7 @@ const cars = [
         priceNew: '$800',
         time: '1 day',
         img: car1,
-        expireDate: new Date('2024-10-27T19:31:40'),
+        expireDate: new Date('2024-11-17T19:31:40'),
     },
     {
         name: 'Lamborghini Aventador J',
@@ -26,7 +26,7 @@ const cars = [
         priceNew: '$800',
         time: '1 day',
         img: car2,
-        expireDate: new Date('2024-10-30T23:59:59'),
+        expireDate: new Date('2024-11-30T23:59:59'),
     },
     {
         name: 'Lamborghini Aventador J',
@@ -34,7 +34,7 @@ const cars = [
         priceNew: '$800',
         time: '1 day',
         img: car3,
-        expireDate: new Date('2024-10-25T23:59:59'),
+        expireDate: new Date('2024-11-25T23:59:59'),
     },
 ];
 
@@ -96,11 +96,11 @@ function Hero() {
     }, []);
 
     const handleVideoEnded = () => {
-        setVideoVisible(false); // Ukryj wideo po zakończeniu
+        setVideoVisible(false);
     };
 
     const handleCloseVideo = () => {
-        setVideoVisible(false); // Ukryj wideo po kliknięciu w X
+        setVideoVisible(false);
     };
 
     return (

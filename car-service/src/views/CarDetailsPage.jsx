@@ -14,9 +14,27 @@ function CarDetailsPage({ carList }) {
     const [value, setValue] = useState(new Date());
 
     const isDateReserved = (date) => {
-        return car.reservedDates.some(reservedDate => new Date(reservedDate).toDateString() === date.toDateString());
+        return car.reservedDates.some(reservedRange => {
+            const startDate = new Date(reservedRange.startDate);
+            const endDate = new Date(reservedRange.endDate);
+            
+            return date >= startDate && date <= endDate;
+        });
     };
 
+    const isAvailable = (car) => {
+        const today = new Date().toISOString().split('T')[0];
+        const reservedDates = car.reservedDates;
+    
+        for (let i = 0; i < reservedDates.length; i++) {
+            const { startDate, endDate } = reservedDates[i];
+    
+            if (today >= startDate && today <= endDate) {
+                return false;
+            }
+        }
+        return true;
+    };
     
     const tileClassName = ({ date, view }) => {
         if (view === 'month') {
@@ -57,16 +75,23 @@ function CarDetailsPage({ carList }) {
                         </div>
                     </div>
                     <div className={styles.info}>
-                        <p>
-                            {car.available ? 
-                            <>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="green" d="M17.15 9.6L10 16.75l-3.2-3.2l.7-.71l2.5 2.5l6.44-6.45zM11.5 3c5.25 0 9.5 4.25 9.5 9.5S16.75 22 11.5 22S2 17.75 2 12.5S6.25 3 11.5 3m0 1C6.81 4 3 7.81 3 12.5S6.81 21 11.5 21s8.5-3.81 8.5-8.5S16.19 4 11.5 4"/></svg> 
-                                {'Availible now'}
-                            </> : <>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M11.5 22C6.26 22 2 17.75 2 12.5A9.5 9.5 0 0 1 11.5 3a9.5 9.5 0 0 1 9.5 9.5a9.5 9.5 0 0 1-9.5 9.5m0-1a8.5 8.5 0 0 0 8.5-8.5c0-2.17-.81-4.15-2.14-5.65l-12.01 12A8.47 8.47 0 0 0 11.5 21m0-17A8.5 8.5 0 0 0 3 12.5c0 2.17.81 4.14 2.15 5.64l12-12A8.5 8.5 0 0 0 11.5 4"/></svg>
-                                {'Not Availible Now'}
-                            </>
-                            }</p>
+                    <p>
+                        {!isDateReserved(new Date()) ? 
+                        <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                <path fill="green" d="M17.15 9.6L10 16.75l-3.2-3.2l.7-.71l2.5 2.5l6.44-6.45zM11.5 3c5.25 0 9.5 4.25 9.5 9.5S16.75 22 11.5 22S2 17.75 2 12.5S6.25 3 11.5 3m0 1C6.81 4 3 7.81 3 12.5S6.81 21 11.5 21s8.5-3.81 8.5-8.5S16.19 4 11.5 4"/>
+                            </svg> 
+                            {'Available now'}
+                        </> : 
+                        <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M11.5 22C6.26 22 2 17.75 2 12.5A9.5 9.5 0 0 1 11.5 3a9.5 9.5 0 0 1 9.5 9.5a9.5 9.5 0 0 1-9.5 9.5m0-1a8.5 8.5 0 0 0 8.5-8.5c0-2.17-.81-4.15-2.14-5.65l-12.01 12A8.47 8.47 0 0 0 11.5 21m0-17A8.5 8.5 0 0 0 3 12.5c0 2.17.81 4.14 2.15 5.64l12-12A8.5 8.5 0 0 0 11.5 4"/>
+                            </svg>
+                            {'Not Available Now'}
+                        </>
+                        }
+                    </p>
+
                         <p className={styles.carDescription}>{car.description}</p>
                         <div className={styles.calendar}>
                             <p>Check Available Date</p>  
@@ -91,7 +116,7 @@ function CarDetailsPage({ carList }) {
                                     name={relatedCar.name}
                                     price={relatedCar.price}
                                     image={relatedCar.image}
-                                    available={relatedCar.available}
+                                    available={isAvailable(relatedCar)}
                                     carData={relatedCar}
                                 />
                             ))
