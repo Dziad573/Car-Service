@@ -7,11 +7,13 @@ import Footer from '../components/Footer/Footer';
 import styles from './CarDetailsPage.module.css';
 import CarCard from '../components/OurCars/CarCard';
 
-function CarDetailsPage({ carList }) {
+function CarDetailsPage({ carList, updateCarReservation }) {
     const location = useLocation();
     const { car } = location.state;
 
     const [value, setValue] = useState(new Date());
+    const [isFormVisible, setFormVisible] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const isDateReserved = (date) => {
         return car.reservedDates.some(reservedRange => {
@@ -45,6 +47,40 @@ function CarDetailsPage({ carList }) {
         return null;
     };
     const relatedCars = carList.filter(c => c.type === car.type && c.id !== car.id).slice(0, 4);
+    
+    const handleDateClick = (date) => {
+        if (!isDateReserved(date)) {
+            setSelectedDate(date);
+            setFormVisible(true);
+        } else {
+            setFormVisible(false);
+        }
+    };
+
+    const handleReservationSubmit = (event) => {
+        event.preventDefault();
+    
+        if (selectedDate) {
+            // Tworzenie obiektu nowej rezerwacji
+            const newReservation = {
+                startDate: selectedDate.toISOString().split('T')[0],
+                endDate: selectedDate.toISOString().split('T')[0],
+            };
+    
+            // Wywołanie funkcji updateCarReservation z odpowiednimi argumentami
+            updateCarReservation(car.id, newReservation);
+    
+            // Resetowanie stanu i zamykanie formularza
+            setFormVisible(false);
+            setSelectedDate(null);
+    
+            alert(`Car reserved successfully for ${newReservation.startDate}`);
+        } else {
+            alert('Please select a date before submitting the reservation.');
+        }
+    };
+    
+    
     return (
         <>
             <div className={styles.carDetailsPage}>
@@ -96,11 +132,51 @@ function CarDetailsPage({ carList }) {
                         <div className={styles.calendar}>
                             <p>Check Available Date</p>  
                             <Calendar
-                                onChange={setValue}
                                 value={value}
                                 tileClassName={tileClassName}
+                                onChange={(value) => {
+                                    setValue(value);
+                                    handleDateClick(value);
+                                }}
                             />
                         </div>
+
+                        {isFormVisible && (
+                            <div className={styles.overlay}
+                                onClick={(e) => {
+                                    if (e.target.classList.contains(styles.overlay)) {
+                                        setFormVisible(false);
+                                    }
+                            }}
+                            >
+                                    <div className={styles.reservationForm}>
+                                        <button
+                                            className={styles.closeButton}
+                                            onClick={() => setFormVisible(false)}
+                                        >
+                                            X
+                                        </button>
+                                        <h2>Reserve Car</h2>
+                                        <p>Selected Date: {selectedDate?.toLocaleDateString()}</p>
+                                        <form onSubmit={handleReservationSubmit}>
+                                            <label>
+                                                Name:
+                                                <input type="text" name="name" required />
+                                            </label>
+                                            <label>
+                                                Email:
+                                                <input type="email" name="email" required />
+                                            </label>
+                                            <label>
+                                                Phone:
+                                                <input type="tel" name="phone" required />
+                                            </label>
+                                            <button type="submit">Reserve Now</button>
+                                        </form>
+                                </div>
+                            </div>
+                        )}
+
                     </div>
                     
                     

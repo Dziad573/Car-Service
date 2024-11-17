@@ -7,11 +7,30 @@ import AboutPage from './views/AboutPage';
 import ContactPage from './views/ContactPage';
 import CarDetailsPage from './views/CarDetailsPage';
 import TopBar from './components/TopBar/TopBar';
-import { carList } from './constants/carList';
-import BrandSlider from './components/OurCars/BrandSlider';
-import OurCars from './components/OurCars/OurCars';
+import { carList as initialCarList } from './constants/carList';
+// import BrandSlider from './components/OurCars/BrandSlider';
+// import OurCars from './components/OurCars/OurCars';
+import { useState } from 'react';
 function AppContent() {
   const location = useLocation();
+  
+  const [carList, setCarList] = useState(initialCarList);
+
+  const updateCarReservation = (carId, newReservation) => {
+    setCarList((prevCarList) => {
+      const updatedList = prevCarList.map((car) =>
+          car.id === carId
+              ? {
+                  ...car,
+                  reservedDates: [...car.reservedDates, newReservation],
+              }
+              : car
+      );
+      console.log("Updated Car List:", updatedList);
+      return updatedList;
+  });
+  
+};
 
   return (
     <>
@@ -23,8 +42,8 @@ function AppContent() {
           <Route path="/cars" element={<CarsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/car/:name" element={<CarDetailsPage carList={carList}/>} />
-      </Routes>
+          <Route path="/car/:name" element={<CarDetailsPage carList={carList} updateCarReservation={updateCarReservation} />} />
+          </Routes>
     </>
   );
 }
