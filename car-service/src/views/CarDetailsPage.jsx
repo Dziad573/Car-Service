@@ -9,18 +9,28 @@ import CarCard from '../components/OurCars/CarCard';
 
 function CarDetailsPage({ carList, updateCarReservation }) {
     const location = useLocation();
-    const { car } = location.state;
+    const { car: initialCar } = location.state;
+    const car = carList.find(c => c.id === initialCar.id);
 
     const [value, setValue] = useState(new Date());
     const [isFormVisible, setFormVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [reservationUpdateKey, setReservationUpdateKey] = useState(0);
+    
+    if (!car) {
+        return <p>Car not found.</p>;
+    }
 
+    
     const isDateReserved = (date) => {
-        return car.reservedDates.some(reservedRange => {
-            const startDate = new Date(reservedRange.startDate);
-            const endDate = new Date(reservedRange.endDate);
-            
-            return date >= startDate && date <= endDate;
+        const normalizeDate = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        const normalizedDate = normalizeDate(date);
+    
+        return car.reservedDates.some((reservedRange) => {
+            const startDate = normalizeDate(new Date(reservedRange.startDate));
+            const endDate = normalizeDate(new Date(reservedRange.endDate));
+    
+            return normalizedDate >= startDate && normalizedDate <= endDate;
         });
     };
 
@@ -49,36 +59,57 @@ function CarDetailsPage({ carList, updateCarReservation }) {
     const relatedCars = carList.filter(c => c.type === car.type && c.id !== car.id).slice(0, 4);
     
     const handleDateClick = (date) => {
-        if (!isDateReserved(date)) {
-            setSelectedDate(date);
+        const normalizedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    
+        if (!isDateReserved(normalizedDate)) {
+            setSelectedDate(normalizedDate);
             setFormVisible(true);
         } else {
             setFormVisible(false);
         }
     };
+    
 
     const handleReservationSubmit = (event) => {
         event.preventDefault();
-    
+
+        const formData = new FormData(event.target);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+
         if (selectedDate) {
-            // Tworzenie obiektu nowej rezerwacji
+            const normalizedDate = new Date(
+                selectedDate.getFullYear(),
+                selectedDate.getMonth(),
+                selectedDate.getDate() + 1
+            );
+
             const newReservation = {
-                startDate: selectedDate.toISOString().split('T')[0],
-                endDate: selectedDate.toISOString().split('T')[0],
+                startDate: normalizedDate.toISOString().split('T')[0],
+                endDate: normalizedDate.toISOString().split('T')[0],
+                name,
+                email,
+                phone,
             };
-    
-            // Wywołanie funkcji updateCarReservation z odpowiednimi argumentami
+
             updateCarReservation(car.id, newReservation);
-    
-            // Resetowanie stanu i zamykanie formularza
+
+            //Re-render
+            setReservationUpdateKey(prevKey => prevKey + 1);
+
+            // Reset the form
+            setValue(new Date());
+            alert(`Car reserved successfully for ${newReservation.startDate}`);
             setFormVisible(false);
             setSelectedDate(null);
-    
-            alert(`Car reserved successfully for ${newReservation.startDate}`);
         } else {
             alert('Please select a date before submitting the reservation.');
         }
     };
+    
+    
+    
     
     
     return (
@@ -132,6 +163,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                         <div className={styles.calendar}>
                             <p>Check Available Date</p>  
                             <Calendar
+                                key={reservationUpdateKey}
                                 value={value}
                                 tileClassName={tileClassName}
                                 onChange={(value) => {
