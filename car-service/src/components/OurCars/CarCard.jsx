@@ -16,7 +16,7 @@ function CarCard({ name, price, image, available, carData }) {
             </div>
             <h3>{name}</h3>
             <div className={styles.priceContainer}>
-                <p className={styles.price}>{price} <span>/ 1 day</span></p>
+                <p className={styles.price}>{price}$ <span>/ 1 day</span></p>
                 <span onClick={handleMoreDetails} className={styles.moreDetails}>More Details &gt;</span>
             </div>
             {available && (

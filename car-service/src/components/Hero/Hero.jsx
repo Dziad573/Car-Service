@@ -6,37 +6,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import styles from './Hero.module.css';
-import car1 from './Challenger.png';
-import car2 from './Charger.png';
-import car3 from './Ram.png';
+//import car1 from './Challenger.png';
+//import car2 from './Charger.png';
+//import car3 from './Ram.png';
 import videoFile from '../../assets/heroo.mp4';
+import { carList } from '../../constants/carList';
 
-const cars = [
-    {
-        name: 'Lamborghini Aventador J',
-        priceOld: '$1300',
-        priceNew: '$800',
-        time: '1 day',
-        img: car1,
-        expireDate: new Date('2024-11-17T19:31:40'),
-    },
-    {
-        name: 'Lamborghini Aventador J',
-        priceOld: '$1300',
-        priceNew: '$800',
-        time: '1 day',
-        img: car2,
-        expireDate: new Date('2024-11-30T23:59:59'),
-    },
-    {
-        name: 'Lamborghini Aventador J',
-        priceOld: '$1300',
-        priceNew: '$800',
-        time: '1 day',
-        img: car3,
-        expireDate: new Date('2024-11-25T23:59:59'),
-    },
-];
 
 function Countdown({ expireDate }) {
     const calculateTimeLeft = () => {
@@ -81,10 +56,12 @@ function Countdown({ expireDate }) {
     );
 }
 
-function Hero() {
+const Hero = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 568);
     const [videoVisible, setVideoVisible] = useState(true);
     const videoRef = useRef(null);
+
+    const activePromotions = carList.filter(car => new Date(car.expireDate) > new Date());
 
     useEffect(() => {
         const handleResize = () => {
@@ -117,7 +94,6 @@ function Hero() {
                         <source src={videoFile} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
-                    {/* Opcjonalny przycisk zamknięcia */}
                     <button className={styles.CloseButton} onClick={handleCloseVideo}>X</button>
                     <h1>Your Premium Rent Car</h1>
                 </div>
@@ -143,14 +119,14 @@ function Hero() {
                             loop={true}
                             autoplay={{ delay: 100 }}
                         >
-                            {cars.map((car, index) => (
+                            {activePromotions.map((car, index) => (
                                 <SwiperSlide key={index}>
                                     <div className={styles.Slide}>
                                         <div className={styles.HeroInner}>
                                             <h1>The offer is active for:</h1>
                                             <Countdown expireDate={car.expireDate} className={styles.countdown} />
                                         </div>
-                                        <img src={car.img} alt={car.name} className={styles.CarImage} />
+                                        <img src={car.image} alt={car.name} className={styles.CarImage} />
                                         <div className={styles.CarDetails}>
                                             <div>
                                                 <h2>{car.name}</h2>
@@ -176,8 +152,9 @@ function Hero() {
                                             </div>
                                             <div>
                                                 <div className={styles.Price}>
-                                                    <span className={styles.OldPrice}>{car.priceOld}</span>
-                                                    <span className={styles.NewPrice}>{car.priceNew}</span> / {car.time}
+                                                    <span className={styles.OldPrice}>{car.price}</span>
+                                                    <span className={styles.NewPrice}>{parseFloat(car.price) - 150}$</span> / day
+
                                                 </div>
                                                 <div className={styles.Buttons}>
                                                     <button className={styles.OrderButton}>Make an Order</button>
@@ -193,6 +170,7 @@ function Hero() {
             )}
         </div>
     );
-}
+};
 
 export default Hero;
+

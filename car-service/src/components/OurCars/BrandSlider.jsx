@@ -1,6 +1,7 @@
 import React from "react";
 import BrandName from "./BrandName";
 import styles from "./BrandSlider.module.css";
+// import all from "../../assets/all.png";
 import ferrariLogo from "../../assets/ferrari.png";
 import lamborghiniLogo from "../../assets/lamborghini.png";
 import dodgeLogo from "../../assets/dodge.png";
@@ -14,7 +15,7 @@ import fordLogo from "../../assets/ford.png";
 
 function BrandSlider({ onBrandSelect }) {
     const brands = [
-        { brand: "", imgSrc: "" },
+        { brand: "", imgSrc: '' },
         { brand: "Ferrari", imgSrc: ferrariLogo },
         { brand: "Lamborghini", imgSrc: lamborghiniLogo },
         { brand: "Dodge", imgSrc: dodgeLogo },

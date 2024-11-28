@@ -157,7 +157,6 @@ img{
 }
 
 /* Reservation Form */
-
 .overlay {
     position: fixed;
     z-index: 1000;
@@ -171,11 +170,14 @@ img{
     transform: translateY(-50%);
     padding: 20px;
     background-color: #2e2e2ece;
+    backdrop-filter: blur(5px);
 }
 .reservationForm{
     position: relative;
-    font-family: var(--font-family-CamptonB);
-    width: 40%;
+    font-family: var(--font-family-CamptonBook);
+    width: 50%; 
+    max-width: 450px;
+    min-width: 350px;
     padding: 4rem 2rem;
     display: flex;
     flex-direction: column;

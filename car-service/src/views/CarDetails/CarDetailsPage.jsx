@@ -2,34 +2,35 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import ClientReviews from '../components/ClientsReviews/ClientReviews';
-import Footer from '../components/Footer/Footer';
+import ClientReviews from '../../components/ClientsReviews/ClientReviews';
+import Footer from '../../components/Footer/Footer';
 import styles from './CarDetailsPage.module.css';
-import CarCard from '../components/OurCars/CarCard';
+import CarCard from '../../components/OurCars/CarCard';
 
 function CarDetailsPage({ carList, updateCarReservation }) {
     const location = useLocation();
-    const { car: initialCar } = location.state;
+    const { car: initialCar} = location.state;
     const car = carList.find(c => c.id === initialCar.id);
 
     const [value, setValue] = useState(new Date());
     const [isFormVisible, setFormVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [reservationUpdateKey, setReservationUpdateKey] = useState(0);
-    
+
+
     if (!car) {
         return <p>Car not found.</p>;
     }
 
-    
+
     const isDateReserved = (date) => {
         const normalizeDate = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
         const normalizedDate = normalizeDate(date);
-    
+
         return car.reservedDates.some((reservedRange) => {
             const startDate = normalizeDate(new Date(reservedRange.startDate));
             const endDate = normalizeDate(new Date(reservedRange.endDate));
-    
+
             return normalizedDate >= startDate && normalizedDate <= endDate;
         });
     };
@@ -109,13 +110,10 @@ function CarDetailsPage({ carList, updateCarReservation }) {
     };
     
     
-    
-    
-    
     return (
         <>
             <div className={styles.carDetailsPage}>
-                <h1>Details for {car.name}</h1>
+            <h1>{car.isPromoted ? `Promotional Details for ${car.name}` : `Details for ${car.name}`}</h1>
                 <div className={styles.infoContainer}>
                     <div className={styles.pics}>
                         <div className={styles.details}>
@@ -138,7 +136,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                         </div>
                         <div className={styles.brand}>
                             <img src={car.image} alt={car.name} />
-                            <p>{car.price}/1 day</p>
+                            <p>{car.price}$/1 day</p>
                         </div>
                     </div>
                     <div className={styles.info}>

@@ -24,8 +24,8 @@ function OurCars() {
 
     const filteredCars = carList.filter(car => {
         const matchesBrand = selectedFilters.brand === '' || car.brand === selectedFilters.brand;
-        const matchesPrice = parseInt(car.price.replace('$', '')) >= selectedFilters.priceRange[0] &&
-                             parseInt(car.price.replace('$', '')) <= selectedFilters.priceRange[1];
+        const matchesPrice = car.price >= selectedFilters.priceRange[0] &&
+                             car.price<= selectedFilters.priceRange[1];
         const matchesHorsePower = parseInt(car.horsePower) >= selectedFilters.horsePower[0] &&
                                   parseInt(car.horsePower) <= selectedFilters.horsePower[1];
         const matchesTransmission = selectedFilters.transmission === '' || car.transmission === selectedFilters.transmission;
