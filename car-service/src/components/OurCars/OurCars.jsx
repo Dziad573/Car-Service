@@ -12,11 +12,9 @@ function OurCars() {
         priceRange: [0, 1000],
         horsePower: [100, 1000],
         transmission: '',
-        onlyAvailable: false,
+        onlyAvailable: true,
         carType: '',
     });
-
-    const location = useLocation();
 
     const handleFilterChange = (filters) => {
         setSelectedFilters(prevFilters => ({ ...prevFilters, ...filters }));
@@ -29,7 +27,7 @@ function OurCars() {
         const matchesHorsePower = parseInt(car.horsePower) >= selectedFilters.horsePower[0] &&
                                   parseInt(car.horsePower) <= selectedFilters.horsePower[1];
         const matchesTransmission = selectedFilters.transmission === '' || car.transmission === selectedFilters.transmission;
-        const matchesAvailability = !selectedFilters.onlyAvailable || car.available === true;
+        const matchesAvailability = selectedFilters.onlyAvailable || car.available === true;
         const matchesType = selectedFilters.carType === '' || car.type === selectedFilters.carType;
 
         return matchesBrand && matchesPrice && matchesHorsePower && matchesTransmission && matchesAvailability && matchesType;

@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import CarCard from './CarCard';
 import styles from './CarList.module.css';
 
@@ -9,13 +10,17 @@ function CarList({ cars }) {
     //     return !reservedDates.includes(today);
     // };
 
+    const location = useLocation();
+    const { car } = location.state || {};
+
+    if (car) {
+        return <div>Car details not available. Please try again.</div>;
+    }
+
     const isAvailable = (car) => {
         const today = new Date().toISOString().split('T')[0];
-        const reservedDates = car.reservedDates;
-    
-        for (let i = 0; i < reservedDates.length; i++) {
-            const { startDate, endDate } = reservedDates[i];
-    
+        for (let i = 0; i < car.reservedDates.length; i++) {
+            const { startDate, endDate } = car.reservedDates[i];
             if (today >= startDate && today <= endDate) {
                 return false;
             }

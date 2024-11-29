@@ -141,6 +141,12 @@ img{
     color: #ffffff !important;
     text-decoration: line-through solid #ffffff !important;
 }
+.inactive-car {
+    background-color: gray;
+}
+.inactive-car:hover {
+    background-color: rgb(88, 88, 88);
+}
 .reserved-date:hover {
     cursor: not-allowed !important;
 }

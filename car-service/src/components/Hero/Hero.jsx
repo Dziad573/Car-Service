@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -11,57 +11,21 @@ import styles from './Hero.module.css';
 //import car3 from './Ram.png';
 import videoFile from '../../assets/heroo.mp4';
 import { carList } from '../../constants/carList';
+import Counter from './Counter';
 
-
-function Countdown({ expireDate }) {
-    const calculateTimeLeft = () => {
-        const difference = +new Date(expireDate) - +new Date();
-        let timeLeft = {};
-
-        if (difference > 0) {
-            timeLeft = {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60),
-            };
-        }
-
-        return timeLeft;
-    };
-
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft());
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, []);
-
-    return (
-        <div className={styles.countdownContainer}>
-            {timeLeft.days !== undefined ? (
-                <div className={styles.countdown}>
-                    <span>{String(timeLeft.days).padStart(2, '0')}:</span>
-                    <span>{String(timeLeft.hours).padStart(2, '0')}:</span>
-                    <span>{String(timeLeft.minutes).padStart(2, '0')}:</span>
-                    <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
-                </div>
-            ) : (
-                <span>Offer expired</span>
-            )}
-        </div>
-    );
-}
 
 const Hero = () => {
+    const navigate = useNavigate();
+
+    const handleViewDetails = (car) => {
+        navigate(`/promotion/car/${car.name.replace(/\s+/g, '-')}`, { state: { car } });
+    };
+
     const [isMobile, setIsMobile] = useState(window.innerWidth < 568);
     const [videoVisible, setVideoVisible] = useState(true);
     const videoRef = useRef(null);
 
-    const activePromotions = carList.filter(car => new Date(car.expireDate) > new Date());
+    const activePromotions = carList.filter(car => new Date(car.expireDate) > new Date() && car.isPromoted === true && car.discount < 1 && car.discount > 0);
 
     useEffect(() => {
         const handleResize = () => {
@@ -124,18 +88,18 @@ const Hero = () => {
                                     <div className={styles.Slide}>
                                         <div className={styles.HeroInner}>
                                             <h1>The offer is active for:</h1>
-                                            <Countdown expireDate={car.expireDate} className={styles.countdown} />
+                                            <Counter expireDate={car.expireDate} className={styles.countdown} />
                                         </div>
                                         <img src={car.image} alt={car.name} className={styles.CarImage} />
                                         <div className={styles.CarDetails}>
                                             <div>
                                                 <h2>{car.name}</h2>
                                                 <div className={styles.Buttons}>
-                                                    <NavLink 
+                                                    {/* <NavLink 
                                                         to={`/${car.name.replace(/\s+/g, '-')}`}
                                                         end
-                                                    >
-                                                        <div className={styles.DetailsButton}>
+                                                    > */}
+                                                        <div className={styles.DetailsButton} onClick={() => handleViewDetails(car)}>
                                                             <svg xmlns="http://www.w3.org/2000/svg" 
                                                                 width="28" 
                                                                 height="28" 
@@ -147,13 +111,13 @@ const Hero = () => {
                                                             </svg>
                                                             <div className={styles.details}>View Details</div>
                                                         </div>
-                                                    </NavLink>
+                                                    {/*</NavLink>*/}
                                                 </div>
                                             </div>
                                             <div>
                                                 <div className={styles.Price}>
                                                     <span className={styles.OldPrice}>{car.price}</span>
-                                                    <span className={styles.NewPrice}>{parseFloat(car.price) - 150}$</span> / day
+                                                    <span className={styles.NewPrice}>{parseFloat(car.price)*car.discount}$</span> / day
 
                                                 </div>
                                                 <div className={styles.Buttons}>

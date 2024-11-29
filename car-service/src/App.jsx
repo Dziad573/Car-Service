@@ -9,6 +9,7 @@ import CarDetailsPage from './views/CarDetails/CarDetailsPage';
 import TopBar from './components/TopBar/TopBar';
 import { carList as initialCarList } from './constants/carList';
 import { useState } from 'react';
+import TestCarProm from './components/Hero/TestCarProm';
 
 function AppContent() {
   const location = useLocation();
@@ -35,7 +36,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cars" element={<CarsPage />} />
-        <Route path="/promotion-details" element={<CarDetailsPage carList={carList} updateCarReservation={updateCarReservation} />} />
+        <Route path="/promotion/car/:carName" element={<CarDetailsPage carList={carList} updateCarReservation={updateCarReservation} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route

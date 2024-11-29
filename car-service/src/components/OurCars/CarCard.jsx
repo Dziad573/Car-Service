@@ -1,11 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CarCard.module.css';
 
 function CarCard({ name, price, image, available, carData }) {
     const navigate = useNavigate();
-
+    // const location = useLocation();
+    // const { car } = location.state || {};
+    // if (!car) {
+    //     return <div>Car details not available. Please try again.</div>;
+    // }
+    
     const handleMoreDetails = () => {
-
         navigate(`/car/${name.replace(/\s+/g, '-').toLowerCase()}`, { state: { car: carData } });
     };
 
