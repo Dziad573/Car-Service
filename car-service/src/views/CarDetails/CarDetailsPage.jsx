@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Calendar from 'react-calendar';
+//import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ClientReviews from '../../components/ClientsReviews/ClientReviews';
 import Footer from '../../components/Footer/Footer';
@@ -8,12 +9,13 @@ import styles from './CarDetailsPage.module.css';
 import CarCard from '../../components/OurCars/CarCard';
 import CalendarComponent from './CalendarComponent';
 import { handleReservationSubmit } from '../../utils/carDetailsHelpers';
+import ReservationForm from './ReservationForm';
 
 function CarDetailsPage({ carList, updateCarReservation }) {
     const location = useLocation();
     const { car: initialCar} = location.state;
     const car = carList.find(c => c.id === initialCar.id);
-    const activePromotion = carList.filter(car => new Date(car.expireDate) > new Date() && car.isPromoted === true && car.discount < 1 && car.discount > 0);
+    const activePromotion = car.isPromoted && new Date(car.expireDate) > new Date() && car.discount < 1 && car.discount > 0;
     
     const navigate = useNavigate();
 
@@ -156,7 +158,18 @@ function CarDetailsPage({ carList, updateCarReservation }) {
     return (
         <>
             <div className={styles.carDetailsPage}>
-            <h1>{activePromotion ? `Promotional Details for ${car.name}` : `Details for ${car.name}`}</h1>
+                <h1 className={`${styles.title} ${activePromotion ? styles.promotionActive : ''}`}>
+                        {activePromotion ? (
+                            <>
+                                <span className={styles.promotionalText}>
+                                    Promotional
+                                    <span className={styles.star}></span>
+                                </span> Details for {car.name}
+                            </>
+                        ) : (
+                            `Details for ${car.name}`
+                        )}
+                </h1>               
                 <div className={styles.infoContainer}>
                     <div className={styles.pics}>
                         <div className={styles.details}>
@@ -173,7 +186,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                                 {car.acceleration}
                             </span>
                             <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4"><path d="M42 42V6h-3l-9 10H12l-6 6v20z"/><path stroke-linecap="round" d="M12 16L22 6h18M20.643 28.889c1.431-1.88 2.535-4.479 3.131-5.889c1.044 1.41 3.31 4.948 4.026 6.829c.894 2.35-1.342 5.171-4.026 5.171s-4.92-3.76-3.131-6.111M11 8l-7 7"/></g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="4"><path d="M42 42V6h-3l-9 10H12l-6 6v20z"/><path strokeLinecap="round" d="M12 16L22 6h18M20.643 28.889c1.431-1.88 2.535-4.479 3.131-5.889c1.044 1.41 3.31 4.948 4.026 6.829c.894 2.35-1.342 5.171-4.026 5.171s-4.92-3.76-3.131-6.111M11 8l-7 7"/></g></svg>
                                 {car.tank}
                             </span>
                         </div>
@@ -223,39 +236,20 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                         </div> */}
 
                         {isFormVisible && (
-                            <div className={styles.overlay}
-                                onClick={(e) => {
-                                    if (e.target.classList.contains(styles.overlay)) {
-                                        setFormVisible(false);
-                                    }
-                            }}
-                            >
-                                    <div className={styles.reservationForm}>
-                                        <button
-                                            className={styles.closeButton}
-                                            onClick={() => setFormVisible(false)}
-                                        >
-                                            X
-                                        </button>
-                                        <h2>Reserve Car</h2>
-                                        <p>Selected Date: {selectedDate?.toLocaleDateString()}</p>
-                                        <form onSubmit={handleSubmit}>
-                                            <label>
-                                                Name:
-                                                <input type="text" name="name" required />
-                                            </label>
-                                            <label>
-                                                Email:
-                                                <input type="email" name="email" required />
-                                            </label>
-                                            <label>
-                                                Phone:
-                                                <input type="tel" name="phone" required />
-                                            </label>
-                                            <button type="submit">Reserve Now</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <ReservationForm
+                                selectedDate={selectedDate}
+                                handleSubmit={handleSubmit}
+                                onClose={() => setFormVisible(false)}
+                                horsePower={car.tank}
+                                transmission={car.transmission}
+                                acceleration={car.acceleration}
+                                tank={car.tank}
+                                image={car.image}
+                                name={car.name}
+                                price={car.price}
+                                discount={car.discount}
+
+                            />
                         )}
 
                     </div>

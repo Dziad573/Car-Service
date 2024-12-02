@@ -1,0 +1,138 @@
+/* Reservation Form */
+.overlay {
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50%);
+    padding: 20px;
+    background-color: #2e2e2ece;
+    backdrop-filter: blur(5px);
+}
+.reservationContainer{
+    position: relative;
+    font-family: var(--font-family-CamptonBook);
+    width: 100%; 
+    max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:center;
+    flex-wrap: wrap;
+    color: var(--color-white);    
+    background-color: rgba(36, 36, 36, 0.664);
+}
+.reservationForm{
+    position: relative;
+    font-family: var(--font-family-CamptonBook);
+    width: 50%; 
+    max-width: 450px;
+    min-width: 350px;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.closeButton {
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-white);
+}
+.reservationForm h2 {
+    margin-bottom: 10px;
+}
+.reservationForm form label {
+    display: block;
+    margin-bottom: 10px;
+}
+.reservationForm form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.reservationForm form button {
+    font-size: var(--font-size-small);
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.reservationForm form button:hover {
+    background-color: #0056b3;
+}
+
+.reservationCarDetails{
+    position: relative;
+    font-family: var(--font-family-CamptonLight);
+    width: 50%; 
+    height: 100%;
+    max-width: 420px;
+    min-width: 340px;
+    height: auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.details>span{
+    padding: .3rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.pics>div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5rem 0;
+}
+.brand{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+.carImage{
+    width: 50%; 
+    max-width: 400px;
+    min-width: 340px;
+    height: auto;
+    border-radius: 0px;
+}
+.OldPrice {
+    text-decoration: line-through;
+    color: #cccccc;
+    margin-right: 10px;
+}
+
+.NewPrice {
+    color: var(--color-orange);
+    font-family: var(--font-family-CamptonBook);
+    text-shadow: rgb(241, 56, 56) 1.5px 1px 5px;
+}
