@@ -1,40 +1,41 @@
-import styles from '../views/CarDetails/CarDetailsPage.module.css';
+//import styles from '../views/CarDetails/CarDetailsPage.module.css';
 
-export const isDateReserved = (date, car) => {
-    const normalizeDate = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
-    const normalizedDate = normalizeDate(date);
 
-    return car.reservedDates.some((reservedRange) => {
-        const startDate = normalizeDate(new Date(reservedRange.startDate));
-        const endDate = normalizeDate(new Date(reservedRange.endDate));
-        return normalizedDate >= startDate && normalizedDate <= endDate;
-    });
-};
+// export const isDateReserved = (date, car) => {
+//     const normalizeDate = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+//     const normalizedDate = normalizeDate(date);
 
-export const isAvailable = (car) => {
-    const today = new Date().toISOString().split('T')[0];
-    const reservedDates = car.reservedDates;
+//     return car.reservedDates.some((reservedRange) => {
+//         const startDate = normalizeDate(new Date(reservedRange.startDate));
+//         const endDate = normalizeDate(new Date(reservedRange.endDate));
+//         return normalizedDate >= startDate && normalizedDate <= endDate;
+//     });
+// };
 
-    for (let i = 0; i < reservedDates.length; i++) {
-        const { startDate, endDate } = reservedDates[i];
+// export const isAvailable = (car) => {
+//     const today = new Date().toISOString().split('T')[0];
+//     const reservedDates = car.reservedDates;
 
-        if (today >= startDate && today <= endDate) {
-            return false;
-        }
-    }
-    return true;
-};
+//     for (let i = 0; i < reservedDates.length; i++) {
+//         const { startDate, endDate } = reservedDates[i];
 
-export const tileClassName = (date, view, car) => {
-    if (view === 'month') {
-        if (isDateReserved(date)) {
-            return styles['reserved-date'];
-        } else if (!isAvailable(car)) {
-            return styles['inactive-car'];
-        }
-    }
-    return null;
-};
+//         if (today >= startDate && today <= endDate) {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+
+// export const tileClassName = (date, view, car) => {
+//     if (view === 'month') {
+//         if (isDateReserved(date)) {
+//             return styles['reserved-date'];
+//         } else if (!isAvailable(car)) {
+//             return styles['inactive-car'];
+//         }
+//     }
+//     return null;
+// };
 
 export const handleReservationSubmit = (
     event,

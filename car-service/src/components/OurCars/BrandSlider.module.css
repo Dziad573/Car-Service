@@ -30,3 +30,40 @@
     flex-shrink: 0;
     margin: 0 10px;
 }
+
+.clearButton {
+    position: relative;
+    font-family: var(--font-family-CamptonBook);
+    font-size: var(--font-size-medium);
+    background-color: var(--color-light-gray);
+    color: var(--color-orange);
+    border: none;
+    font-weight: bold;
+    /* border: 1px solid #ccc; */
+    height: auto;
+    padding: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clearButton:hover{
+    color: var(--color-orange);
+}
+.clearButton::after{
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: 25%;
+    width: 0;
+    height: 3px;
+    background-color: var(--color-orange);
+    transition: all 0.3s;
+}
+.clearButton:hover::after{
+    width: calc(90% - 5px);
+}
+/* .clearButton:hover {
+    background-color: var(--color-orange);
+    color: var(--color-white);
+} */
+

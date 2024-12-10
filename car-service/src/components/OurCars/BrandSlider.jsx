@@ -15,7 +15,6 @@ import fordLogo from "../../assets/ford.png";
 
 function BrandSlider({ onBrandSelect }) {
     const brands = [
-        { brand: "", imgSrc: '' },
         { brand: "Ferrari", imgSrc: ferrariLogo },
         { brand: "Lamborghini", imgSrc: lamborghiniLogo },
         { brand: "Dodge", imgSrc: dodgeLogo },
@@ -27,10 +26,17 @@ function BrandSlider({ onBrandSelect }) {
         { brand: "Audi", imgSrc: audiLogo },
         { brand: "Ford", imgSrc: fordLogo },
     ];
-    
+
     return (
         <div className={styles.sliderContainer}>
+            
             <div className={styles.slider}>
+                <button 
+                    className={styles.clearButton} 
+                    onClick={() => onBrandSelect("")}
+                >
+                Clear
+                </button>
                 {brands.map((item, index) => (
                     <BrandName 
                         key={index} 

@@ -5,7 +5,7 @@ function BrandName({ brand, imgSrc, onClick }) {
     return (
         <div className={styles.brand} onClick={onClick}>
             {imgSrc ? (
-                <img src={imgSrc} alt={brand} />
+                <img src={imgSrc} loading='lazy' alt={brand} />
             ) : (
                 <p>{brand}</p>
             )}

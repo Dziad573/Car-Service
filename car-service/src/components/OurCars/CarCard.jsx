@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './CarCard.module.css';
 
 function CarCard({ name, price, image, available, carData }) {
@@ -8,7 +8,7 @@ function CarCard({ name, price, image, available, carData }) {
     // if (!car) {
     //     return <div>Car details not available. Please try again.</div>;
     // }
-    
+    const discounted = carData.discount > 0 && carData.discount < 1; 
     const handleMoreDetails = () => {
         navigate(`/car/${name.replace(/\s+/g, '-').toLowerCase()}`, { state: { car: carData } });
     };
@@ -16,11 +16,18 @@ function CarCard({ name, price, image, available, carData }) {
     return (
         <div className={`${styles.carCard} ${available ? styles.available : styles.unavailable}`}>
             <div className={styles.image}>
-                <img src={image} alt={name} className={styles.carImage} />
+                <img src={image} alt={name} className={styles.carImage} loading='lazy' />
             </div>
             <h3>{name}</h3>
             <div className={styles.priceContainer}>
-                <p className={styles.price}>{price}$ <span>/ 1 day</span></p>
+                <p className={styles.normalPrice}>
+                    <span className={discounted ? styles.newPrice : ''}>
+                        {price}$
+                    </span> 
+                    <span>
+                        / 1 day
+                    </span>
+                </p>
                 <span onClick={handleMoreDetails} className={styles.moreDetails}>More Details &gt;</span>
             </div>
             {available && (
