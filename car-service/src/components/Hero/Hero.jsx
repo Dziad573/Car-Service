@@ -54,6 +54,7 @@ const Hero = () => {
                         muted
                         ref={videoRef}
                         onEnded={handleVideoEnded}
+                        loading='lazy'
                     >
                         <source src={videoFile} type="video/mp4" />
                         Your browser does not support the video tag.
@@ -90,7 +91,7 @@ const Hero = () => {
                                             <h1>The offer is active for:</h1>
                                             <Counter expireDate={car.expireDate} className={styles.countdown} />
                                         </div>
-                                        <img src={car.image} alt={car.name} className={styles.CarImage} />
+                                        <img src={car.image} alt={car.name} loading='lazy' className={styles.CarImage} />
                                         <div className={styles.CarDetails}>
                                             <div>
                                                 <h2>{car.name}</h2>
@@ -104,7 +105,7 @@ const Hero = () => {
                                                                 width="28" 
                                                                 height="28" 
                                                                 viewBox="0 0 24 24">
-                                                                <g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                                <g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
                                                                     <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0"/>
                                                                     <path d="M21 12q-3.6 6-9 6t-9-6q3.6-6 9-6t9 6"/>
                                                                 </g>

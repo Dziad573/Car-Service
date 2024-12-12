@@ -4,7 +4,12 @@ import About from '../../constants/About.js'
 
 function AboutCompany() {
     return (
+        <>
+        <marquee direction="right">
+            <h1> awdfa wda </h1>
+        </marquee>
         <div className={styles.aboutCompany}> 
+        
             <div className={styles.aboutImage}>
                 <img src={img} alt="" />
             </div>
@@ -50,6 +55,7 @@ function AboutCompany() {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
