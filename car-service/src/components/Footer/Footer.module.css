@@ -31,11 +31,37 @@
     padding: 1rem;
 }
 .faq>ul>li{
+    width:fit-content;
+    position: relative;
     text-align: left;
     list-style: outside;
     list-style-type:decimal;
     padding: 1rem 0;
+    transition: all 0.3s;
+    cursor:help;
+    
 }
+.faq li:hover {
+    color: #007BFF;
+}
+.tooltip {
+    position: absolute;
+    top: 50%;
+    left: 110%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    width: max-content;
+    max-width: 400px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: .4rem .5rem;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+    z-index: 10;
+}
+
 .socials{
     width: auto;
     position: absolute;

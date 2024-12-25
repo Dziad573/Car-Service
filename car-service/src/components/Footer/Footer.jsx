@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import styles from './Footer.module.css';
 
 function Footer() {
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    const faqItems = [
+        { question: "How to book a car?", answer: "To book a car, click on the desired car and fill out the reservation form." },
+        { question: "What are the requirements?", answer: "You need a valid driving license and ID." },
+        { question: "How to cancel a booking?", answer: "Go to your bookings page and select 'Cancel' for the desired booking." },
+        { question: "How to contact us?", answer: "You can contact us via our support email or phone number provided on the website." },
+    ];
+
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
@@ -20,10 +30,19 @@ function Footer() {
                 <div className={styles.faq}>
                 <h3>F.A.Q</h3>
                     <ul>
-                        <li>How to book a car?</li>
-                        <li>What are the requirements?</li>
-                        <li>How to cancel a booking?</li>
-                        <li>How to contact us?</li>
+                        {faqItems.map((item, index) => (
+                            <li
+                                key={index}
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                                className={styles.question}
+                            >
+                                {item.question}
+                                {hoveredIndex === index && (
+                                    <div className={styles.tooltip}>{item.answer}</div>
+                                )}
+                            </li>
+                    ))}
                     </ul>
                 </div>
                 <div className={styles.logo}>
