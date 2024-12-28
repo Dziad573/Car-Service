@@ -1,0 +1,116 @@
+.reservationPageContainer{
+    width: 100%;    
+    min-height: 100vh;
+    background-color: var(--color-white);
+}
+.reservationPage {
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: var(--font-family-CamptonBook);
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: default;
+}
+.pageTitle {
+    font-size: var(--font-size-large);
+    font-family: var(--font-family-CamptonSemiBold);
+    color: var(--color-black);
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.reservationItem {
+    background-color: var(--color-light-gray);
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, 
+    box-shadow 0.3s ease;
+}
+.reservationItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.reservationTitle {
+    font-size: var(--font-size-normal);
+    font-family: var(--font-family-CamptonSemiBold);
+    color: var(--color-black);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-orange);
+    padding-bottom: 10px;
+}
+.carName {
+    font-size: var(--font-size-normal);
+    color: var(--color-black);
+    font-family: var(--font-family-CamptonBook);
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.carImageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.details{
+    color: var(--color-gray);
+    font-size: var(--font-size-small);
+    font-family: var(--font-family-CamptonLight);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 10px;
+}
+.carImage {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.reservationDate, .customerInfo {
+    font-size: var(--font-size-small);
+    color: var(--color-gray);
+    font-family: var(--font-family-CamptonLight);
+    margin-bottom: 8px;
+}
+hr {
+    border: 0;
+    border-top: 1px solid var(--color-gray);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+@media (max-width: 768px) {
+    .reservationPage {
+        padding: 30px 15px;
+    }
+
+    .pageTitle {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .reservationItem {
+        padding: 20px;
+    }
+
+    .reservationTitle {
+        font-size: 1.5rem;
+    }
+
+    .carName {
+        font-size: 1.4rem;
+    }
+    .details {
+        display: none;
+    }
+    .reservationDate, .customerInfo {
+        font-size: 1.2rem;
+    }
+}
