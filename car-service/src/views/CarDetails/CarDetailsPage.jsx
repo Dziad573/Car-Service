@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { useReservation } from '../../contexts/ReservationContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 //import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -8,16 +9,18 @@ import Footer from '../../components/Footer/Footer';
 import styles from './CarDetailsPage.module.css';
 import CarCard from '../../components/OurCars/CarCard';
 import CalendarComponent from './CalendarComponent';
-import { handleReservationSubmit } from '../../utils/carDetailsHelpers';
+//import { handleReservationSubmit } from '../../utils/carDetailsHelpers';
 import ReservationForm from './ReservationForm';
 
+
 function CarDetailsPage({ carList, updateCarReservation }) {
+    const { updateReservation } = useReservation();
     const location = useLocation();
     const { car: initialCar} = location.state;
     const car = carList.find(c => c.id === initialCar.id);
     const activePromotion = car.isPromoted && new Date(car.expireDate) > new Date() && car.discount < 1 && car.discount > 0;
     
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const [value, setValue] = useState(new Date());
     const [isFormVisible, setFormVisible] = useState(false);
@@ -142,16 +145,39 @@ function CarDetailsPage({ carList, updateCarReservation }) {
     // };
 
     const handleSubmit = (event) => {
-        handleReservationSubmit(
-            event,
-            selectedDate,
-            car,
-            updateCarReservation,
-            setReservationUpdateKey,
-            setFormVisible,
-            setSelectedDate,
-            navigate
-        );
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+
+        if (selectedDate) {
+            const normalizedDate = new Date(
+                selectedDate.getFullYear(),
+                selectedDate.getMonth(),
+                selectedDate.getDate() + 1
+            );
+
+            const newReservation = {
+                startDate: normalizedDate.toISOString().split('T')[0],
+                endDate: normalizedDate.toISOString().split('T')[0],
+                name,
+                email,
+                phone,
+            };
+
+            updateReservation(car, selectedDate, name, email, phone);
+
+            updateCarReservation(car.id, newReservation);
+
+            alert(`Car reserved successfully for ${newReservation.startDate}`);
+            
+            setFormVisible(false);
+            setSelectedDate(null);
+        } else {
+            alert('Please select a date before submitting the reservation.');
+        }
     };
     
     
@@ -240,7 +266,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                                 selectedDate={selectedDate}
                                 handleSubmit={handleSubmit}
                                 onClose={() => setFormVisible(false)}
-                                horsePower={car.tank}
+                                horsePower={car.horsePower}
                                 transmission={car.transmission}
                                 acceleration={car.acceleration}
                                 tank={car.tank}

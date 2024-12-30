@@ -45,7 +45,7 @@ export const handleReservationSubmit = (
     setReservationUpdateKey,
     setFormVisible,
     setSelectedDate,
-    navigate
+    //navigate
 ) => {
     event.preventDefault();
 
@@ -69,7 +69,7 @@ export const handleReservationSubmit = (
             phone,
         };
 
-        navigate(`/car/${car.name.replace(/\s+/g, '-')}`, { state: { car } });
+        //navigate(`/car/${car.name.replace(/\s+/g, '-')}`, { state: { car } });
 
         updateCarReservation(car.id, newReservation);
 
