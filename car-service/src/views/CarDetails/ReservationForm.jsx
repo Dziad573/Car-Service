@@ -1,12 +1,58 @@
+import { useEffect, useState } from 'react';
 import styles from './ReservationForm.module.css';
 
 const ReservationForm = ({ 
     selectedDate, handleSubmit, 
-    onClose,horsePower, transmission, 
+    onClose, horsePower, transmission, 
     acceleration, tank,
     image, name, price, discount
 }) => {
-    
+        const [isVisible, setIsVisible] = useState(false);
+        const [isReserved, setIsReserved] = useState(false);
+        const [formName, setName] = useState('');
+        const [formEmail, setEmail] = useState('');
+        const [formPhone, setPhone] = useState('');
+        const [formErrors, setErrors] = useState({
+            formName: false,
+            formEmail: false,
+            formPhone: false,
+        });
+
+        useEffect(() => {
+            const timer = setTimeout(() => setIsVisible(true), 0);
+            return () => clearTimeout(timer);
+        }, []);
+
+        const handleReservationSuccess = () => {
+            const newErrors = {
+                formName: !formName,
+                formEmail: !formEmail,
+                formPhone: !formPhone,
+            };
+            setErrors(newErrors);
+        
+            if (!newErrors.formName && !newErrors.formEmail && !newErrors.formPhone) {
+                setIsReserved(true);
+                setTimeout(() => {
+                    onClose();
+                    setIsReserved(false);
+                    setIsVisible(false);
+                }, 3000);
+            } else {
+                animateError();
+            }
+            };
+
+            const animateError = () => {
+            // const inputs = document.querySelectorAll('input');
+            // inputs.forEach((input) => {
+            //   input.classList.add(styles.inputError);
+            //   setTimeout(() => {
+            //     input.classList.remove(styles.inputError);
+            //   }, 1000);
+            // });
+            };
+
     return (
         <div className={styles.overlay}
             onClick={(e) => {
@@ -15,7 +61,15 @@ const ReservationForm = ({
                 }
             }}
         >
-            <div className={styles.reservationContainer}>
+
+
+            <div
+                className={`${styles.reservationContainer} 
+                ${isVisible ? styles.animateSlideUp : ''} 
+                ${isReserved ? styles.fadeOut : ''}`}
+            >
+
+
             <button
                     className={styles.closeButton}
                     onClick={onClose}
@@ -25,21 +79,45 @@ const ReservationForm = ({
             <div className={styles.reservationForm}>
                 <h2>Reserve Car</h2>
                 <p>Selected Date: {selectedDate?.toLocaleDateString()}</p>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}> 
                     <label>
                         Name:
-                        <input type="text" name="name" required />
+                        <input 
+                        type="text" 
+                        name="name" 
+                        required 
+                        value={formName} 
+                        onChange={(e) => setName(e.target.value)} 
+                        className={formErrors.formName ? styles.inputError : ''}
+                        />
                     </label>
                     <label>
                         Email:
-                        <input type="email" name="email" required />
+                        <input 
+                        type="email" 
+                        name="email" 
+                        required 
+                        value={formEmail} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        className={formErrors.formEmail ? styles.inputError : ''}
+                        />
                     </label>
                     <label>
                         Phone:
-                        <input type="tel" name="phone" required />
+                        <input 
+                        type="tel" 
+                        name="phone" 
+                        required 
+                        value={formPhone} 
+                        onChange={(e) => setPhone(e.target.value)} 
+                        className={formErrors.formPhone ? styles.inputError : ''}
+                        />
                     </label>
-                    <button type="submit">Reserve Now</button>
+                    <button type="submit" onClick={handleReservationSuccess}>
+                        Reserve Now
+                    </button>
                 </form>
+
             </div>
 
             <div className={styles.reservationCarDetails}>
@@ -81,7 +159,21 @@ const ReservationForm = ({
                     </div>
                 </div>
             </div>
-            </div>
+            
+            
+            </div>{
+                isReserved ?
+                <div className={styles.wrapper}> 
+                    <svg className={styles.checkmark} 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 52 52"> 
+                        <circle className={styles.checkmark__circle} cx="26" cy="26" r="25" fill="none"/> 
+                        <path className={styles.checkmark__check} fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                    <span className={styles.checkmarkText}>Reservation successful</span>
+                </div>
+                : null
+            }
         </div>
     );
 };

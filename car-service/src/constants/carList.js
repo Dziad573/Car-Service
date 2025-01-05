@@ -23,7 +23,7 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: false,
+
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-10-02', endDate: '2024-10-15' },
@@ -78,7 +78,6 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-10-02', endDate: '2024-10-15' },
@@ -131,12 +130,12 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-10-02', endDate: '2024-10-15' },
             { startDate: '2024-11-11', endDate: '2024-11-20' },
             { startDate: '2024-12-01', endDate: '2024-12-10' },
+            { startDate: '2025-01-01', endDate: '2025-01-10' },
             { startDate: '2025-01-20', endDate: '2025-01-30' },
             { startDate: '2025-02-21', endDate: '2025-03-01' },
             { startDate: '2025-03-19', endDate: '2025-03-25' },
@@ -185,7 +184,7 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: false,
+
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-09-20', endDate: '2024-10-01' },
@@ -241,7 +240,6 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-09-20', endDate: '2024-10-01' },
@@ -297,7 +295,6 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-09-20', endDate: '2024-10-01' },
@@ -353,7 +350,6 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-10-02', endDate: '2024-10-15' },
@@ -406,7 +402,6 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-10-02', endDate: '2024-10-15' },
@@ -459,13 +454,13 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: false,
+
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-09-20', endDate: '2024-10-01' },
             { startDate: '2024-11-01', endDate: '2024-11-10' },
             { startDate: '2024-12-15', endDate: '2024-12-28' },
-            { startDate: '2025-01-05', endDate: '2025-01-15' },
+            { startDate: '2025-01-01', endDate: '2025-01-15' },
             { startDate: '2025-02-10', endDate: '2025-02-20' },
             { startDate: '2025-03-10', endDate: '2025-03-18' },
             { startDate: '2025-04-05', endDate: '2025-04-12' },
@@ -515,7 +510,6 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-10-02', endDate: '2024-10-15' },
@@ -568,7 +562,6 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-09-20', endDate: '2024-10-01' },
@@ -624,7 +617,7 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: false,
+
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-10-02', endDate: '2024-10-15' },
@@ -677,7 +670,6 @@ export const carList = [
         transmission: 'Automatic',
         acceleration: '3.5s',
         tank: '70L',
-        available: true,
         description: 'The Ferrari 812 Superfast is a front mid-engine, rear-wheel-drive grand tourer produced by Italian sports car manufacturer Ferrari that made its debut at the 2017 Geneva Motor Show. The 812 Superfast is the successor to the F12berlinetta.',
         reservedDates: [
             { startDate: '2024-10-02', endDate: '2024-10-15' },
