@@ -18,6 +18,7 @@ const Hero = () => {
     const navigate = useNavigate();
 
     const handleViewDetails = (car) => {
+        window.scrollTo(0, 0);
         navigate(`/promotion/car/${car.name.replace(/\s+/g, '-')}`, { state: { car } });
     };
 

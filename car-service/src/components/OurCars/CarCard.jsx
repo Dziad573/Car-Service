@@ -10,6 +10,7 @@ function CarCard({ name, price, image, available, carData }) {
     // }
     const discounted = carData.discount > 0 && carData.discount < 1; 
     const handleMoreDetails = () => {
+        window.scrollTo(0, 0);
         navigate(`/car/${name.replace(/\s+/g, '-').toLowerCase()}`, { state: { car: carData } });
     };
 
@@ -22,18 +23,22 @@ function CarCard({ name, price, image, available, carData }) {
             <div className={styles.priceContainer}>
                 <p className={styles.normalPrice}>
                     <span className={discounted ? styles.newPrice : ''}>
-                        {price}$
+                        {price * carData.discount}$
                     </span> 
                     <span>
                         / 1 day
                     </span>
                 </p>
-                <span onClick={handleMoreDetails} className={styles.moreDetails}>More Details &gt;</span>
+                <span onClick={handleMoreDetails} 
+                    className={`${styles.moreDetails} 
+                    ${available ? '' : styles.unavailableMoreDetails}`}>
+                    More Details &gt;
+                </span>
             </div>
             {available && (
                 <div className={styles.overlay}>
                     <p className={styles.availableNow}>Available Now</p>
-                    <a href="#" className={styles.makeOrder}>Make an Order</a>
+                    <span onClick={handleMoreDetails} className={styles.makeOrder}>Make an Order</span>
                 </div>
             )}
         </div>

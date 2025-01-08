@@ -3,12 +3,12 @@ import ReactSlider from 'react-slider';
 import styles from './Filter.module.css';
 
 function Filter({ onFilterChange }) {
-    const [priceRange, setPriceRange] = useState([250, 740]);
+    const [priceRange, setPriceRange] = useState([0, 1000]);
     const [horsePower, setHorsePower] = useState([100, 1000]);
     const [brand, setBrand] = useState('');
     const [transmission, setTransmission] = useState('');
-    const [onlyAvailable, setOnlyAvailable] = useState(false);
     const [carType, setCarType] = useState('');
+    const [onlyAvailable, setOnlyAvailable] = useState(false);
 
     const handleApplyFilters = () => {
         onFilterChange({
@@ -16,8 +16,8 @@ function Filter({ onFilterChange }) {
             brand,
             horsePower,
             transmission,
-            onlyAvailable,
             carType,
+            onlyAvailable,
         });
     };
 
@@ -44,7 +44,6 @@ function Filter({ onFilterChange }) {
                         />
                     )}
                 />
-
             </div>
 
             {/* Horse Power Slider */}
@@ -68,18 +67,17 @@ function Filter({ onFilterChange }) {
                 />
             </div>
 
-            {/* Only Available */}
+            {/* Only Available Checkbox */}
             <div className={styles.filterItem}>
                 <label>
-                    Only Available
                     <input
                         type="checkbox"
                         checked={onlyAvailable}
-                        onChange={(e) => setOnlyAvailable(e.target.checked)}
+                        onChange={(e) => setOnlyAvailable(e.target.checked)} 
                     />
+                    Only Available
                 </label>
             </div>
-
             {/* Brand */}
             <div className={styles.filterItem}>
                 <label>Brand</label>
@@ -88,7 +86,10 @@ function Filter({ onFilterChange }) {
                     <option value="Ferrari">Ferrari</option>
                     <option value="Lamborghini">Lamborghini</option>
                     <option value="BMW">BMW</option>
+                    <option value="Dodge">Dodge</option>
                     <option value="Toyota">Toyota</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Mazda">Mazda</option>
                 </select>
             </div>
 
@@ -107,9 +108,12 @@ function Filter({ onFilterChange }) {
                 <label>Type</label>
                 <select value={carType} onChange={(e) => setCarType(e.target.value)}>
                     <option value=''>All</option>
+                    <option value="Sedan">Sedan</option>
                     <option value="Supercar">Supercar</option>
                     <option value="SUV">SUV</option>
-                    <option value="Convertible">Convertible</option>
+                    <option value="Pickup">Pickup</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Muscle Car">Muscle Car</option>
                 </select>
             </div>
 

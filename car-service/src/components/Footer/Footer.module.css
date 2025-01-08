@@ -116,3 +116,13 @@
     }
 
 }
+
+@media screen and (max-width: 784px){
+    .tooltip{
+        top: -100%;
+        left: 20%;
+        max-width: 300px;
+        padding: .2rem .2rem;
+        word-wrap: break-word;
+    }
+}

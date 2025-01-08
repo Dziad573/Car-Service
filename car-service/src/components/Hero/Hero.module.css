@@ -191,16 +191,25 @@ g, .details{
 :global(.swiper-button-next), :global(.swiper-button-prev) {
     color: var(--color-orange);
 }
-
-@media screen and (max-width: 578px) {
+@media screen and (max-width: 784px){
+    .HeroInner {
+        width: 100%;
+        flex-direction: column;
+        margin-top: 0vh;
+    }
+    h1 {
+        font-size: 2.7rem;
+    }
+}
+/*@media screen and (max-width: 578px) {
     .HeroInner {
         margin-top: 0;
     }
     .Container {
-        /* margin: -4rem; */
-        /* padding: 0 20px; */
+        margin: -4rem; 
+        padding: 0 20px; 
     }
-    /* .CarImage {
+    .CarImage {
         padding: 50px 0;
     }
     .CarDetails {
@@ -224,6 +233,7 @@ g, .details{
     }
     .countdown {
         font-size: 2rem;
-    } */
+    }
     
-}
+    
+}*/

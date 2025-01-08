@@ -27,7 +27,7 @@ function TopBar() {
                             activeClassName={styles.active}
                             end
                         >
-                            Home
+                            RentCar
                         </NavLink>
                         <NavLink 
                             to="/cars" 
