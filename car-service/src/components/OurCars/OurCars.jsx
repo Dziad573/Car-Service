@@ -4,7 +4,6 @@ import BrandSlider from './BrandSlider';
 import CarList from './CarList';
 import Filter from './Filter';
 import { carList } from '../../constants/carList';
-import { useLocation } from 'react-router-dom';
 
 function OurCars() {
     const [selectedFilters, setSelectedFilters] = useState({
@@ -12,7 +11,7 @@ function OurCars() {
         priceRange: [0, 1000],
         horsePower: [100, 1000],
         transmission: '',
-        onlyAvailable: true,
+        onlyAvailable: false,
         carType: '',
     });
 
@@ -20,14 +19,25 @@ function OurCars() {
         setSelectedFilters(prevFilters => ({ ...prevFilters, ...filters }));
     };
 
+    const isAvailable = (car) => {
+        const today = new Date().toISOString().split('T')[0];
+        for (let i = 0; i < car.reservedDates.length; i++) {
+            const { startDate, endDate } = car.reservedDates[i];
+            if (today >= startDate && today <= endDate) {
+                return false;
+            }
+        }
+        return true;
+    };
+
     const filteredCars = carList.filter(car => {
         const matchesBrand = selectedFilters.brand === '' || car.brand === selectedFilters.brand;
         const matchesPrice = car.price >= selectedFilters.priceRange[0] &&
-                             car.price<= selectedFilters.priceRange[1];
+                             car.price <= selectedFilters.priceRange[1];
         const matchesHorsePower = parseInt(car.horsePower) >= selectedFilters.horsePower[0] &&
                                   parseInt(car.horsePower) <= selectedFilters.horsePower[1];
         const matchesTransmission = selectedFilters.transmission === '' || car.transmission === selectedFilters.transmission;
-        const matchesAvailability = selectedFilters.onlyAvailable || car.available === true;
+        const matchesAvailability = selectedFilters.onlyAvailable ? isAvailable(car) : true;
         const matchesType = selectedFilters.carType === '' || car.type === selectedFilters.carType;
 
         return matchesBrand && matchesPrice && matchesHorsePower && matchesTransmission && matchesAvailability && matchesType;

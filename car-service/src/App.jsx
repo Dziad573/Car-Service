@@ -17,16 +17,16 @@ function AppContent() {
   const [carList, setCarList] = useState(initialCarList);
 
   const updateCarReservation = (carId, newReservation) => {
+
     setCarList((prevCarList) => {
-      const updatedList = prevCarList.map((car) =>
-        car.id === carId
-          ? { ...car, reservedDates: [...car.reservedDates, newReservation] }
-          : car
-      );
-      console.log("Updated Car List:", updatedList);
-      return updatedList;
+        const updatedList = prevCarList.map((car) =>
+            car.id === carId
+                ? { ...car, reservedDates: [...car.reservedDates, newReservation] }
+                : car
+        );
+        return updatedList;
     });
-  };
+};
 
   const hideTopBarOnPaths = ['/'];
   const showTopBar = !hideTopBarOnPaths.includes(location.pathname);
