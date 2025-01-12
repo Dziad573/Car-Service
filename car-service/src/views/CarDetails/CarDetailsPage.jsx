@@ -24,8 +24,11 @@ function CarDetailsPage({ carList, updateCarReservation }) {
 
     const [value, setValue] = useState(new Date());
     const [isFormVisible, setFormVisible] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(null);
+    // const [selectedDate, setSelectedDate] = useState(null);
+    // const [selectedEndDate, setSelectedEndDate] = useState(null);
+    const [selectedDates, setSelectedDates] = useState({ startDate: null, endDate: null });
     const [reservationUpdateKey, setReservationUpdateKey] = useState(0);
+
 
 
     const isDateReserved = (date) => {
@@ -39,14 +42,10 @@ function CarDetailsPage({ carList, updateCarReservation }) {
             return normalizedDate >= startDate && normalizedDate <= endDate;
         });
     };
-
     const isAvailable = (car) => {
         const today = new Date().toISOString().split('T')[0];
-        const reservedDates = car.reservedDates;
-    
-        for (let i = 0; i < reservedDates.length; i++) {
-            const { startDate, endDate } = reservedDates[i];
-    
+        for (let i = 0; i < car.reservedDates.length; i++) {
+            const { startDate, endDate } = car.reservedDates[i];
             if (today >= startDate && today <= endDate) {
                 return false;
             }
@@ -64,123 +63,87 @@ function CarDetailsPage({ carList, updateCarReservation }) {
         }
         return null;
     };
-    const relatedCars = carList.filter(c => c.type === car.type && c.id !== car.id).slice(0, 4);
-    
+    const relatedCars = carList.filter(c => c.type === car.type && c.id !== car.id).slice(0, 10);
+    const relatedCars2 = carList.filter(c => c.type == 'Sedan' && c.type !== car.type).slice(0, 7);
+
+
+    const normalizeToLocalDate = (date) => {
+        const localDate = new Date(date);
+        localDate.setMinutes(localDate.getMinutes() - localDate.getTimezoneOffset());
+        return localDate.toISOString().split("T")[0];
+    };
+
     const handleDateClick = (date) => {
         const normalizedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     
-        if (!isDateReserved(normalizedDate)) {
-            setSelectedDate(normalizedDate);
-            setFormVisible(true);
+        if (!selectedDates.startDate && !isDateReserved(normalizedDate)) {
+            setSelectedDates({ 
+                startDate: normalizeToLocalDate(normalizedDate), 
+                endDate: null 
+            });
+        } else if (selectedDates.startDate && !selectedDates.endDate && !isDateReserved(normalizedDate)) {
+            if (normalizedDate > new Date(selectedDates.startDate)) {
+                setSelectedDates({ 
+                    startDate: selectedDates.startDate, 
+                    endDate: normalizeToLocalDate(normalizedDate) 
+                });
+                setFormVisible(true);
+            } else {
+                alert("End date must be after start date.");
+            }
         } else {
-            setFormVisible(false);
+            alert("Selected date is reserved or invalid.");
         }
     };
     
-    // const handleReservationSubmit = (event) => {
-    //     event.preventDefault();
-    //     if (selectedDate) {
-    //         const formData = new FormData(event.target);
-    //     const newReservation = {
-    //         startDate: selectedDate.toISOString().split('T')[0],
-    //         endDate: selectedDate.toISOString().split('T')[0],
-    //         name: formData.get('name'),
-    //         email: formData.get('email'),
-    //         phone: formData.get('phone'),
-    //     }
-    //         navigate(`/car/${car.name.replace(/\s+/g, '-')}`, { state: { car } });
-
-    //         updateCarReservation(car.id, newReservation);
-    //         //Re-render
-    //         setReservationUpdateKey(prevKey => prevKey + 1);
-
-    //         // Reset the form
-    //         setValue(new Date());
-    //         alert(`Car reserved successfully for ${newReservation.startDate}`);
-    //         setFormVisible(false);
-    //         setSelectedDate(null);
-    // }else{alert('Please select a date before submitting the reservation.');};
-    
-    //     // Zaktualizuj rezerwację za pomocą `updateCarReservation`
-    //     updateCarReservation(car.id, newReservation);
-    //     alert(`Car reserved successfully for ${newReservation.startDate}`);
-    // };
-
-    // const handleReservationSubmit = (event) => {
-    //     event.preventDefault();
-
-    //     const formData = new FormData(event.target);
-    //     const name = formData.get('name');
-    //     const email = formData.get('email');
-    //     const phone = formData.get('phone');
-
-    //     if (selectedDate) {
-    //         const normalizedDate = new Date(
-    //             selectedDate.getFullYear(),
-    //             selectedDate.getMonth(),
-    //             selectedDate.getDate() + 1
-    //         );
-
-    //         const newReservation = {
-    //             startDate: normalizedDate.toISOString().split('T')[0],
-    //             endDate: normalizedDate.toISOString().split('T')[0],
-    //             name,
-    //             email,
-    //             phone,
-    //         };
-    //         navigate(`/car/${car.name.replace(/\s+/g, '-')}`, { state: { car } });
-
-    //         updateCarReservation(car.id, newReservation);
-    //         //Re-render
-    //         setReservationUpdateKey(prevKey => prevKey + 1);
-
-    //         // Reset the form
-    //         setValue(new Date());
-    //         alert(`Car reserved successfully for ${newReservation.startDate}`);
-    //         setFormVisible(false);
-    //         setSelectedDate(null);
-    //     } else {
-    //         alert('Please select a date before submitting the reservation.');
-    //     }
-    // };
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const formData = new FormData(event.target);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const phone = formData.get('phone');
+        const name = formData.get("name");
+        const email = formData.get("email");
+        const phone = formData.get("phone");
 
-        if (selectedDate) {
-            const normalizedDate = new Date(
-                selectedDate.getFullYear(),
-                selectedDate.getMonth(),
-                selectedDate.getDate() + 1
-            );
+        // if (selectedDates.startDate && selectedDates.endDate) {
+        //     updateReservation(
+        //         car, 
+        //         selectedDates.startDate, 
+        //         selectedDates.endDate, 
+        //         name, 
+        //         email, 
+        //         phone
+        //     );
+    
 
-            const newReservation = {
-                startDate: normalizedDate.toISOString().split('T')[0],
-                endDate: normalizedDate.toISOString().split('T')[0],
-                name,
-                email,
-                phone,
-            };
+            if (selectedDates.startDate && selectedDates.endDate) {
+                const newReservation = {
+                    startDate: selectedDates.startDate,
+                    endDate: selectedDates.endDate,
+                    name,
+                    email,
+                    phone,
+                };
+                updateReservation(
+                    car, 
+                    selectedDates.startDate, 
+                    selectedDates.endDate, 
+                    name, 
+                    email, 
+                    phone
+                );
+                updateCarReservation(car.id, newReservation);
 
-            updateReservation(car, selectedDate, name, email, phone);
-
-            updateCarReservation(car.id, newReservation);
-
-            alert(`Car reserved successfully for ${newReservation.startDate}`);
+            //alert(`Car reserved successfully from ${selectedDates.startDate} to ${selectedDates.endDate}`);
+            //setFormVisible(false);
+            setTimeout(() => {
+                setSelectedDates({ startDate: null, endDate: null });
+            }, 1000);
             
-            setFormVisible(false);
-            setSelectedDate(null);
         } else {
-            alert('Please select a date before submitting the reservation.');
+            alert("Please select both start and end dates before submitting.");
         }
     };
-    
-    
+
     return (
         <>
             <div className={styles.carDetailsPage}>
@@ -262,27 +225,30 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                         </div> */}
 
                         {isFormVisible && (
-                            <ReservationForm
-                                selectedDate={selectedDate}
-                                handleSubmit={handleSubmit}
-                                onClose={() => setFormVisible(false)}
-                                horsePower={car.horsePower}
-                                transmission={car.transmission}
-                                acceleration={car.acceleration}
-                                tank={car.tank}
-                                image={car.image}
-                                name={car.name}
-                                price={car.price}
-                                discount={car.discount}
-
-                            />
+                            <div className={styles.fadeIn}>
+                                <ReservationForm
+                                    selectedDates={selectedDates}
+                                    // selectedDate={selectedDate}
+                                    // selectedEndDate={selectedEndDate}
+                                    handleSubmit={handleSubmit}
+                                    onClose={() => setFormVisible(false)}
+                                    horsePower={car.horsePower}
+                                    transmission={car.transmission}
+                                    acceleration={car.acceleration}
+                                    tank={car.tank}
+                                    image={car.image}
+                                    name={car.name}
+                                    price={car.price}
+                                    discount={car.discount}
+                                />
+                            </div>
                         )}
 
                     </div>
                     
                     
                 </div>
-
+                
                 <div className={styles.relatedCars}>
                     <h2>Related Cars</h2>
                     <div className={styles.relatedCarsContainer}>
@@ -298,12 +264,27 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                                 />
                             ))
                         ) : (
-                            <p>No related cars available.</p>
+                            // <p>No related cars available.</p>
+                            ''
+                        )}
+
+
+                        {relatedCars.length < 5 && (
+                            relatedCars2.map(relatedCar2 => (
+                                <CarCard
+                                    key={relatedCar2.id}
+                                    name={relatedCar2.name}
+                                    price={relatedCar2.price}
+                                    image={relatedCar2.image}
+                                    available={isAvailable(relatedCar2)}
+                                    carData={relatedCar2}
+                                />
+                            ))
                         )}
                     </div>
 
                 </div>
-
+                
                 <ClientReviews />
                 <Footer />
             </div>
