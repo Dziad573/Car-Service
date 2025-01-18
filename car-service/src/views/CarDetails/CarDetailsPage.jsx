@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useReservation } from '../../contexts/ReservationContext';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 //import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ClientReviews from '../../components/ClientsReviews/ClientReviews';
@@ -27,7 +27,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
     // const [selectedDate, setSelectedDate] = useState(null);
     // const [selectedEndDate, setSelectedEndDate] = useState(null);
     const [selectedDates, setSelectedDates] = useState({ startDate: null, endDate: null });
-    const [reservationUpdateKey, setReservationUpdateKey] = useState(0);
+    //const [reservationUpdateKey, setReservationUpdateKey] = useState(0);
 
 
 
@@ -75,7 +75,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
 
     const handleDateClick = (date) => {
         const normalizedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    
+        
         if (!selectedDates.startDate && !isDateReserved(normalizedDate)) {
             setSelectedDates({ 
                 startDate: normalizeToLocalDate(normalizedDate), 
@@ -83,18 +83,36 @@ function CarDetailsPage({ carList, updateCarReservation }) {
             });
         } else if (selectedDates.startDate && !selectedDates.endDate && !isDateReserved(normalizedDate)) {
             if (normalizedDate > new Date(selectedDates.startDate)) {
+                const startDate = new Date(selectedDates.startDate);
+                const endDate = normalizedDate;
+    
+                const rangeDates = [];
+                for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                    rangeDates.push(new Date(d));
+                }
+    
+                const hasConflict = rangeDates.some((d) => isDateReserved(d));
+    
+                if (hasConflict) {
+                    alert("Selected date range contains reserved dates.");
+                    setSelectedDates({ startDate: null, endDate: null });
+                    return;
+                }
+    
                 setSelectedDates({ 
-                    startDate: selectedDates.startDate, 
-                    endDate: normalizeToLocalDate(normalizedDate) 
+                    startDate: normalizeToLocalDate(startDate), 
+                    endDate: normalizeToLocalDate(endDate) 
                 });
                 setFormVisible(true);
             } else {
+                setSelectedDates({ startDate: null, endDate: null });
                 alert("End date must be after start date.");
             }
         } else {
             alert("Selected date is reserved or invalid.");
         }
     };
+    
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -208,7 +226,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                             onChange={setValue}
                             tileClassName={tileClassName}
                             handleDateClick={handleDateClick}
-                            reservationUpdateKey={setReservationUpdateKey}
+                            //reservationUpdateKey={setReservationUpdateKey}
                         />
 
                         {/* <div className={styles.calendar}>

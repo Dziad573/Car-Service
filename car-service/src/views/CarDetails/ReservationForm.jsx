@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './ReservationForm.module.css';
 
 const ReservationForm = ({ 
-    selectedDate, handleSubmit, 
+    selectedDates, handleSubmit, 
     onClose, horsePower, transmission, 
     acceleration, tank,
     image, name, price, discount
@@ -17,6 +17,7 @@ const ReservationForm = ({
             formEmail: false,
             formPhone: false,
         });
+
 
         useEffect(() => {
             const timer = setTimeout(() => setIsVisible(true), 0);
@@ -37,11 +38,12 @@ const ReservationForm = ({
                     onClose();
                     setIsReserved(false);
                     setIsVisible(false);
-                }, 3000);
+                }, 2000);
             } else {
                 animateError();
             }
             };
+
 
             const animateError = () => {
             // const inputs = document.querySelectorAll('input');
@@ -52,6 +54,7 @@ const ReservationForm = ({
             //   }, 1000);
             // });
             };
+
 
     return (
         <div className={styles.overlay}
@@ -78,7 +81,8 @@ const ReservationForm = ({
                 </button>
             <div className={styles.reservationForm}>
                 <h2>Reserve Car</h2>
-                <p>Selected Date: {selectedDate?.toLocaleDateString()}</p>
+                <p>Selected Start Date: {selectedDates.startDate}</p>
+                <p>Selected End Date: {selectedDates.endDate}</p>
                 <form onSubmit={handleSubmit}> 
                     <label>
                         Name:

@@ -5,10 +5,11 @@ const ReservationContext = createContext();
 export const ReservationProvider = ({ children }) => {
     const [reservationData, setReservationData] = useState([]);
 
-    const updateReservation = (car, selectedDate, name, email, phone) => {
+    const updateReservation = (car, startDate, endDate, name, email, phone) => {
         const newReservation = {
             car,
-            selectedDate,
+            startDate,
+            endDate,
             name,
             email,
             phone
@@ -21,7 +22,7 @@ export const ReservationProvider = ({ children }) => {
     };
 
     return (
-        <ReservationContext.Provider value={{ reservationData, updateReservation }}>
+        <ReservationContext.Provider value={{ reservationData, setReservationData, updateReservation }}>
             {children}
         </ReservationContext.Provider>
     );
