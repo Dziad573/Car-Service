@@ -1,4 +1,5 @@
 .carDetailsPage{
+    scroll-behavior: smooth;
     background-color: var(--color-light-gray);
     color: var(--color-black);
     width: 100%;
@@ -29,7 +30,7 @@ img{
     border-radius: 0px;
 }
 .pics{
-    width: 100%;
+    width: 50%;
     margin: 1rem;
     min-width: 200px;
     max-width: 700px;
@@ -41,8 +42,27 @@ img{
     margin-top: 10px;
     /* background-color: aqua; */
 }
-.info{
+.brand{
     width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+.brand > img {
+    width: 100%;
+    max-width: 600px;
+    min-width: 300px;
+}
+.brand > p{
+    width: 100%;
+    text-align: center;
+}
+.info{
+    width: 50%;
     min-width: 200px;
     max-width: 500px;
     display: flex;
@@ -64,12 +84,10 @@ img{
     align-items: center;
     margin-top: 10px;
 }
-/* .details>span{
+.details>span{
     padding: .5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 10px 0;
-} */
+    margin: 0;
+}
 .carDescription{
     width: 100%;
     font-display: flex;
@@ -198,6 +216,10 @@ img{
     background-color: #e67373 !important;
     color: #ffffff !important;
 }
+:global(.react-calendar__navigation>button:focus){
+    background-color: #e67373 !important;
+    color: #ffffff !important;
+}
 :global(.react-calendar__month-view__weekdays__weekday){
     font-size: cacl(var(--font-size-small) - .5rem) !important;
     font-family: var(--font-family-CamptonBook) !important;
@@ -211,28 +233,96 @@ img{
 .inactive-car {
     background-color: gray;
 }
+.start-date {
+    background-color: blue !important;
+    color: white !important;
+}
+/* .end-date {
+    background-color: green !important;
+    color: white !important;
+}
+.hovered-date {
+    background-color: lightblue !important;
+    color: black !important;
+} */
 .inactive-car:hover {
     background-color: rgb(88, 88, 88);
 }
 .reserved-date:hover {
     cursor: not-allowed !important;
 }
-.relatedCars{
-    margin: 3rem 0;
-}
-.relatedCarsContainer {
+.relatedCars {
     width: 100%;
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
     justify-content: center;
-    margin: .5rem 0;
+    align-items: center;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.relatedCarsContainer {
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 .relatedCarsContainer > * {
-    flex: 0 2 100%;
-    margin: 1rem .3rem;
+    flex: 0 0 300px;
+    margin: 0.5rem 0;
+    max-width: 300px;
 }
 
+.relatedCarsContainer::-webkit-scrollbar {
+    height: 10px;
+    background-color: #f63c2f52;
+    border-radius: 10px;
+}
+
+.relatedCarsContainer::-webkit-scrollbar-thumb {
+    background-color: var(--color-orange);
+    border-radius: 10px;
+}
+
+
+@keyframes slideUpAndScale {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.fadeIn {
+    z-index: 12;
+    animation: slideUpAndScale 0.2s ease-out forwards;
+}
+@media screen and (max-width: 1084px){
+    .pics{width: 100%;}
+    .info{width: 100%;}
+}
+
+@media screen and (max-width: 784px){
+    .brand {
+        width: 100%;
+        height: auto;
+    }
+    .brand > img {
+        width: 100%;
+        max-width: 500px;
+    }
+    .brand > p{
+        width: 100%;
+        text-align: center;
+    }
+}
 /* Reservation Form */
 /* .overlay {
     position: fixed;
@@ -300,3 +390,4 @@ img{
 .reservationForm form button:hover {
     background-color: #0056b3;
 } */
+
