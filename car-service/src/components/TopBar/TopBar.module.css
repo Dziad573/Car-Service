@@ -89,7 +89,29 @@
         padding: .4rem;
         height: 50px;
     }
+    .NavButton{
+        max-width: 50px;
+        padding: 0rem;
+        margin: .7rem;
+    }
     .logo{
         margin-top: .4rem;
+    }
+}
+@media (max-width: 440px) {
+    .NavButtons{
+        justify-content: space-between;
+        align-items: center;
+    }
+    .NavButton{
+        max-width: 50px;
+        padding: 0rem;
+        margin: .5rem;
+    }
+    .navIcon{
+        width: 32px;
+    }
+    .NavButton:hover::after{
+        width: calc(100% + 5px);
     }
 }
