@@ -93,21 +93,59 @@
     margin-bottom: 10px;
     font-weight: bold;
 }
+.carContainer{
+    width: 100%;
+}
 .carImageContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 0 2rem;
+    
+}
+.mainDetails{
+    margin-bottom: 2rem;
+    width: 100%;
+    color: var(--color-gray);
+    font-size: var(--font-size-small);
+    font-family: var(--font-family-CamptonLight);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
 }
-.details{
+.mainDetails>span{
+    padding: 0 1rem;
+}
+.details1, .details2{
+    width: 50%;
+    min-width: 200px;
     color: var(--color-gray);
     font-size: var(--font-size-small);
     font-family: var(--font-family-CamptonLight);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: end;
-    margin-bottom: 10px;
+    justify-content: start;
+    margin-bottom: 4rem;
+}
+.details1>span{
+    text-align: end;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 10px 5px;
+}
+.details2>span{
+    text-align: start;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 10px 5px;
+}
+.details2>span>svg, .details1>span>svg{
+    min-width: 32px;
 }
 .carImage {
     width: 100%;
@@ -130,6 +168,22 @@ hr {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+.infoContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.clientInfo, .revervationInfo {
+    width: 50%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 @media (max-width: 768px) {
     .reservationPage {
         padding: 30px 15px;
@@ -151,10 +205,53 @@ hr {
     .carName {
         font-size: 1.4rem;
     }
-    .details {
-        display: none;
+    .carImageContainer{
+        padding: 0rem;
+        
+    }
+    .details1, .details2{
+        font-size: calc(var(--font-size-small) - .2rem);
+        font-family: var(--font-family-CamptonLight);
+    }
+    .details1>span>svg, .details2>span>svg{
+        width: 24px;
+        min-width: 24px;
     }
     .reservationDate, .customerInfo {
         font-size: 1.2rem;
+    }
+}
+@media (max-width: 668px) {
+    /* .details1, .details2{
+        display: none;
+    } */
+    .mainDetails{
+        margin-bottom: 1.5rem;
+        font-size: calc(var(--font-size-small) - .15rem);
+    }
+    .mainDetails>span{
+        padding: 0 .5rem;
+    }
+    .details1, .details2{
+        margin-bottom: 2rem;
+    }
+}
+@media (max-width: 440px) {
+    .carImageContainer{
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+    .details1, .details2{
+        width: 100%;
+        margin-bottom: 0rem;
+    }
+    .details1>span{
+        padding: 5px 2px;
+    }
+    .details2>span{
+        padding: 5px 2px;
+    }
+    .infoContainer{
+        font-size: calc(var(--font-size-small) - .15rem);
     }
 }
