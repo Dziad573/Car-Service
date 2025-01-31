@@ -59,6 +59,8 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                 return styles['reserved-date'];
             } else if (!isAvailable(car)) {
                 return styles['inactive-car'];
+            // } else if (!selectedDates.startDate){
+            //     return styles['reserve-range'];
             }
         }
         return null;
@@ -81,6 +83,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                 startDate: normalizeToLocalDate(normalizedDate), 
                 endDate: null 
             });
+            //tileClassName({ date: normalizedDate, view: 'month' });
         } else if (selectedDates.startDate && !selectedDates.endDate && !isDateReserved(normalizedDate)) {
             if (normalizedDate > new Date(selectedDates.startDate)) {
                 const startDate = new Date(selectedDates.startDate);
@@ -147,7 +150,7 @@ function CarDetailsPage({ carList, updateCarReservation }) {
                     selectedDates.endDate, 
                     name, 
                     email, 
-                    phone
+                    phone,
                 );
                 updateCarReservation(car.id, newReservation);
 

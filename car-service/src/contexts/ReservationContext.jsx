@@ -12,7 +12,7 @@ export const ReservationProvider = ({ children }) => {
             endDate,
             name,
             email,
-            phone
+            phone,
         };
 
         setReservationData((prevData) => {
