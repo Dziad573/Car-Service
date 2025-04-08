@@ -19,3 +19,5 @@ cd car-service
 npm install  
 npm run dev  
 Visit http://localhost:5173 to view the app in your browser.
+
+https://ccrent.netlify.app/
